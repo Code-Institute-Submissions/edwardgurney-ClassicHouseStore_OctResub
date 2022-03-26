@@ -1,1 +1,1 @@
-web: classic_house_vinyl_store.wsgi:application
+web: gunicorn classic_house_vinyl_store.wsgi:application
