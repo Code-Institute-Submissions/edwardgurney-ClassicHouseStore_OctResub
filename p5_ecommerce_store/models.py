@@ -18,7 +18,7 @@ class Product(models.Model):
     artist = models.CharField(max_length=200)
     label = models.CharField(max_length=200)
     description = models.TextField()
-    release_date = models.DateTimeField(auto_now=False)
+    release_date = models.DateField(auto_now=False)
     # rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     image = CloudinaryField('image', default='placeholder')
     price = models.DecimalField(max_digits=6, decimal_places=2)
@@ -26,4 +26,4 @@ class Product(models.Model):
     audio_link = models.FileField(max_length=200, blank=True, null=True)
 
     def __str__(self):
-        return self.name
+        return self.title
