@@ -17,6 +17,7 @@ class Product(models.Model):
     slug = models.SlugField(max_length=250, unique=True)
     artist = models.CharField(max_length=200)
     label = models.CharField(max_length=200)
+    product_ID = models.CharField(max_length=200, default="", editable=False)
     description = models.TextField()
     release_date = models.DateField(auto_now=False)
     # rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
