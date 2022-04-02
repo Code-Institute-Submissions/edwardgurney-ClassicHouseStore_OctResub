@@ -17,6 +17,7 @@
     
     <title>Classic House Store {% block extra_title%}{% endblock %}</title>
     <link href="{% static 'style.css' %}" rel="stylesheet">
+    {% block customcss %}
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -33,6 +34,7 @@
         }
       }
     </style>
+    {% endblock %}
     <meta name="theme-color" content="#563d7c">
   </head>
   
@@ -62,14 +64,10 @@
         </div>
       </nav>
     </header>
-    <main role="main">
-    <section>
-      <p>&nbsp;</p>
-    </section>
+    
     {% block content %}
     <h1>Hello, world!</h1>
     {% endblock %}
-  </main>
   
   </body>
 </html>
