@@ -9,7 +9,7 @@ class ProductAdmin(SummernoteModelAdmin):
     summernote_fields = ('description')
     list_filter = ('artist', 'label', 'title')
     search_fields = ['title', 'artist']
-    list_display = ('title', 'slug', 'label', 'price')
+    list_display = ('title', 'artist', 'slug', 'label', 'price')
 
 
 # Register your models here.
