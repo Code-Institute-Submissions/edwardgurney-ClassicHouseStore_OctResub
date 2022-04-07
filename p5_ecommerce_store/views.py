@@ -17,21 +17,31 @@ class BasketView(View):
 
     def get(self, request, *args, **kwargs):
         current_bag = self.get_object()
+        print(current_bag)
         product_id = request.GET.get('product_id')
-        user_quantity = request.GET.get('quantity', 1)
-        current_product = get_object_or_404(Product, id=product_id)
-        if user_quantity > 0:
-            current_bag_item, created = BagItem.objects.get_or_create(bag=current_bag, product=current_product)
-            current_bag_item.quantity = user_quantity
-            current_bag_item.save()
-        else:
-            try:
-                bag_item = BagItem.objects.get(bag=current_bag,  product=current_product)
-                bag_item.delete()
-            except BagItem.DoesNotExist:
-                pass
+        print(product_id)
+        user_quantity = int(request.GET.get('quantity', 1))
+        print(user_quantity)
+        if product_id:
+            current_product = get_object_or_404(Product, id=product_id)
+            print(current_product)
+            if user_quantity > 0:
+                current_bag_item, created = BagItem.objects.get_or_create(bag=current_bag, product=current_product)
+                current_bag_item.quantity = user_quantity
+                current_bag_item.save()
+                print(current_bag_item)
+            else:
+                try:
+                    bag_item = BagItem.objects.get(bag=current_bag,  product=current_product)
+                    bag_item.delete()
+                except BagItem.DoesNotExist:
+                    pass
+        context ={
+            'object': current_bag
+        }
+        return render(request, self.template_name, context)
 
-    def get_object(self):
+    def get_object(self, *args, **kwargs):
         old_bag_id = self.request.session.get('bag_id', None)
         if old_bag_id is None:
             bag = Bag()

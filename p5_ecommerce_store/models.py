@@ -54,7 +54,7 @@ class BagItem(models.Model):
     bag = models.ForeignKey('Bag', on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.id
+        return f"{self.id}"
 
 class Bag(models.Model):
     STATE = (
@@ -63,14 +63,14 @@ class Bag(models.Model):
         ('closed', 'closed')
     )
     bag_items = models.ManyToManyField('Product', through='BagItem')
-    total = models.DecimalField(max_digits=10, decimal_places=2)
+    total = models.DecimalField(default=0.00, max_digits=10, decimal_places=2)
     order = models.OneToOneField('Order', on_delete=models.SET_NULL, null=True, blank=True)
     creation_date = models.DateTimeField(auto_now_add=True)
     state = models.CharField(choices=STATE, max_length=15, default='open')
     user = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True)
 
     def __str__(self):
-        return self.id
+        return f"{self.id}"
 
 class ShippingAddress(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

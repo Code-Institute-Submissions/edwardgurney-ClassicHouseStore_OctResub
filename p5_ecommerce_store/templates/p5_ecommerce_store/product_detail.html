@@ -30,7 +30,7 @@
       <a href="{% url 'home' %}">
       <button type="button" class="btn btn-sm btn-outline-secondary">Go back to store</button>
       </a>
-      <form action="" method="GET">{% csrf_token%}
+      <form action="{% url 'basket' %}" method="GET">{% csrf_token%}
         <input type="hidden" name="product_id" value="{{product.id}}"/>
         <input type="number" name="quantity"/>
             <button type="submit" class="btn btn-sm btn-outline-secondary">Add to Basket</button>
