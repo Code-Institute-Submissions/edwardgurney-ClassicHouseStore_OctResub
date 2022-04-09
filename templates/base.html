@@ -66,7 +66,12 @@
               <a class="nav-link" href="{% url 'login' %}" tabindex="-1" aria-disabled="false">Login</a>
               {% endif %}
             </li>
-            
+            {% if not request.user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'signup' %}" tabindex="-1" aria-disabled="false">Sign-up</a>
+            </li>
+            {% endif %}
+
           </ul>
           
           <form class="form-inline mt-2 mt-md-0">

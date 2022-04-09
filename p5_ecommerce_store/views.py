@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic, View
 from .models import Product, Bag, BagItem
+from django.contrib.auth.forms import UserCreationForm
+from django.http import HttpResponseRedirect
 
 
 class StoreFrontView(generic.ListView):
@@ -53,6 +55,26 @@ class BasketView(View):
             bag = Bag.objects.get(id=old_bag_id)
         return bag
 
+def signup_view(request):
+    unsubmitted_form = UserCreationForm()
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        print(form)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/login')
+        else:
+            print(form.errors)
+            context = {
+                'form': form
+            }
+            return render(request, 'registration/signup.html', context)
+    context = {
+                'form': unsubmitted_form
+            }
+    return render(request, 'registration/signup.html', context)
+    
+    
 
 
     
