@@ -30,10 +30,12 @@ class BasketView(View):
                 current_bag_item.quantity = user_quantity
                 current_bag_item.save()
                 print(current_bag_item)
+                current_bag.save()
             else:
                 try:
                     bag_item = BagItem.objects.get(bag=current_bag,  product=current_product)
                     bag_item.delete()
+                    current_bag.save()
                 except BagItem.DoesNotExist:
                     pass
         context ={

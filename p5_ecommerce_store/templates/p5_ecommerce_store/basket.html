@@ -10,7 +10,6 @@
         <th scope="col">Record Title</th>
         <th scope="col">Quantity</th>
         <th scope="col">Total</th>
-        <th scope="col">Delete</th>
       </tr>
     </thead>
     <tbody>
@@ -18,9 +17,14 @@
       <tr>
         <td>{{ forloop.counter }}</td>
         <td>{{ item.product.title }}</td>
-        <td>{{ item.quantity }}</td>
+        <td>
+          <form action="{% url 'basket' %}" method="GET">{% csrf_token%}
+            <input type="hidden" name="product_id" value="{{item.product.id}}"/>
+            <input type="number" name="quantity" value="{{ item.quantity }}"/>
+            <button type="submit" class="btn btn-sm btn-outline-secondary">Update</button>
+          </form>
+        </td>
         <td>{{ item.get_bag_item_total }}</td>
-        <td>Delete</td>
       </tr>
       {% empty %}
       <tr><td colspan="5" class="text-center">There are no items in your bag</td></tr>
@@ -29,7 +33,6 @@
         <td>&nbsp;</td>
         <td colspan="2" class="text-left">Bag Total</td>
         <td>{{object.total}}</td>
-        <td>&nbsp;</td>
       </tr>
 
     </tbody>
