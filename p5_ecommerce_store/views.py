@@ -62,11 +62,30 @@ class BasketView(View):
 	def get_object(self, *args, **kwargs):
 		old_bag_id = self.request.session.get('bag_id', None)
 		if old_bag_id is None:
-			bag = Bag()
-			bag.save()
+			if self.request.user.is_authenticated:
+				try:
+					userbag = Bag.object.get(user=self.request.user, state='open')
+					bag = userbag
+				except Bag.DoesNotExist:
+					bag = Bag()
+					bag.user = self.request.user
+					bag.save()		
+			else:
+				bag = Bag()
+				bag.save()
 			self.request.session['bag_id'] = bag.id
 		else:
 			bag = Bag.objects.get(id=old_bag_id)
+			if self.request.user.is_authenticated:
+				if bag.user is None:
+					bag.user = self.request.user
+					bag.save()
+				elif bag.user != self.request.user:
+					bag = Bag()
+					bag.user = self.request.user
+					bag.save()
+					self.request.session['bag_id'] = bag.id		
+
 		return bag
 
 def signup_view(request):
