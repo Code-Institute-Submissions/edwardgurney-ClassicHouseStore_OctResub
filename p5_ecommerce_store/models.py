@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 from cloudinary.models import CloudinaryField
 
+from decimal import Decimal
 # User = get_user_model()
 
 class Category(models.Model):
@@ -56,6 +57,10 @@ class BagItem(models.Model):
     def __str__(self):
         return f"{self.id}"
 
+    @property
+    def get_bag_item_total(self):
+        return Decimal(self.product.price) * Decimal(self.quantity)
+
 class Bag(models.Model):
     STATE = (
         ('open', 'open'),
@@ -71,6 +76,13 @@ class Bag(models.Model):
 
     def __str__(self):
         return f"{self.id}"
+
+    def save(self, *args, **kwargs):
+        pending_total = Decimal(0)
+        for item in self.bagitem_set.all():
+            pending_total = Decimal(pending_total) + Decimal(item.get_bag_item_total)
+        self.total = pending_total
+        super(Bag, self).save(*args, **kwargs)
 
 class ShippingAddress(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

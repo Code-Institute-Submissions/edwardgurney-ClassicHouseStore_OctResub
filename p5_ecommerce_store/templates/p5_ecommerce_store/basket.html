@@ -19,12 +19,19 @@
         <td>{{ forloop.counter }}</td>
         <td>{{ item.product.title }}</td>
         <td>{{ item.quantity }}</td>
-        <td>{{ item.total }}</td>
+        <td>{{ item.get_bag_item_total }}</td>
         <td>Delete</td>
       </tr>
       {% empty %}
       <tr><td colspan="5" class="text-center">There are no items in your bag</td></tr>
       {% endfor %}
+      <tr>
+        <td>&nbsp;</td>
+        <td colspan="2" class="text-left">Bag Total</td>
+        <td>{{object.total}}</td>
+        <td>&nbsp;</td>
+      </tr>
+
     </tbody>
   </table>
 </div>
