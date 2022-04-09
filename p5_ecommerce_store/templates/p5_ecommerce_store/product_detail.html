@@ -25,6 +25,7 @@
       <p> Artist: {{ product.artist }}</p>
       <p> Label: {{ product.label }}</p>
       <p> Price: {{ product.price }}</p>
+      <p> Genre: {{ product.category }}</p>
       <p class="col-md-8 fs-4">{{ product.description|safe }}</p>
       <button class="btn btn-sm btn-outline-secondary" type="button">Play</button>
       <a href="{% url 'home' %}">

@@ -43,6 +43,7 @@
   
   <body>
     <header>
+      
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <a class="navbar-brand" href="#">Classic House Vinyl Store</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,7 +58,17 @@
               <a class="nav-link" href="{% url 'basket' %}">View Basket</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'home' %}">Categories</a>
+              <div class="dropdown show">
+                <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Genres
+                </a>
+              
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  {% for category in allcategories %}
+                  <a class="dropdown-item" href="{% url 'category' pk=category.id %}">{{ category }}</a>
+                  {% endfor %}
+                </div>
+              </div>
             </li>
             <li class="nav-item">
               {% if request.user.is_authenticated %}
