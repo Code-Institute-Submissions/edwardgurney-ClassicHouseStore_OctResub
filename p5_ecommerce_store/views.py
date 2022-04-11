@@ -3,6 +3,7 @@ from django.views import generic, View
 from .models import Product, Bag, BagItem, Category
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponseRedirect
+from .forms import AddressForm
 
 class StoreFrontView(generic.ListView):
 	template_name = 'p5_ecommerce_store/index.html'
@@ -64,7 +65,7 @@ class BasketView(View):
 		if old_bag_id is None:
 			if self.request.user.is_authenticated:
 				try:
-					userbag = Bag.object.get(user=self.request.user, state='open')
+					userbag = Bag.objects.get(user=self.request.user, state='open')
 					bag = userbag
 				except Bag.DoesNotExist:
 					bag = Bag()
@@ -106,10 +107,14 @@ def signup_view(request):
 				'form': unsubmitted_form
 			}
 	return render(request, 'registration/signup.html', context)
-	
-	
 
+class CheckoutView(generic.DetailView):
+	template_name = 'p5_ecommerce_store/checkout.html'
+	model = Bag
 
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['allcategories'] = Category.objects.all()
+		context['form'] = AddressForm()
+		return context
 	
-# def basket_view(request):
-#     return render(request, 'p5_ecommerce_store/basket.html')

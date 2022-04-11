@@ -1,5 +1,13 @@
 {% extends 'base.html' %}
+{% block customcss %}
+<style>
+.container {
+  max-width: 960px;
+}
 
+.lh-condensed { line-height: 1.25; }
+</style>
+{% endblock%}
 {% block content %}
 <h2>Your Basket</h2>
 <div class="table-responsive">
@@ -34,7 +42,10 @@
         <td colspan="2" class="text-left">Bag Total</td>
         <td>{{object.total}}</td>
       </tr>
-
+      <tr rowspan="2">
+        <td colspan="3">&nbsp;</td>
+        <td class="text-left"><a class="btn btn-primary" href="{% url 'checkout' object.id %}">Check Out</a></td>
+      </tr>
     </tbody>
   </table>
 </div>
