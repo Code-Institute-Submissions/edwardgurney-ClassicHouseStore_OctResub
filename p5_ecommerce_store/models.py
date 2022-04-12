@@ -89,11 +89,11 @@ class ShippingAddress(models.Model):
     name = models.CharField(max_length=250)
     house_number = models.CharField(max_length=20)
     address_1 = models.CharField(max_length=250)
-    address_2 = models.CharField(max_length=250)
+    address_2 = models.CharField(max_length=250, null=True, blank=True)
     town_or_city = models.CharField(max_length=100)
-    county = models.CharField(max_length=100)
+    county = models.CharField(max_length=100, null=True, blank=True)
     postcode = models.CharField(max_length=100)
-    phone_number = models.CharField(max_length=20)
+    phone_number = models.CharField(max_length=20, null=True, blank=True)
 
     def __str__(self):
         return self.user

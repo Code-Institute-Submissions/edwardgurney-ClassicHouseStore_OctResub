@@ -4,6 +4,7 @@ from .models import Product, Bag, BagItem, Category
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponseRedirect
 from .forms import AddressForm
+from django.views.generic.detail import SingleObjectMixin
 
 class StoreFrontView(generic.ListView):
 	template_name = 'p5_ecommerce_store/index.html'
@@ -108,13 +109,31 @@ def signup_view(request):
 			}
 	return render(request, 'registration/signup.html', context)
 
-class CheckoutView(generic.DetailView):
+class CheckoutView(SingleObjectMixin, View):
 	template_name = 'p5_ecommerce_store/checkout.html'
 	model = Bag
 
-	def get_context_data(self, **kwargs):
-		context = super().get_context_data(**kwargs)
+	def get(self, request, *args, **kwargs):
+	#def get_context_data(self, **kwargs):
+		#context = super().get_context_data(**kwargs)
+		context = {}
+		context['object'] = self.get_object()
 		context['allcategories'] = Category.objects.all()
-		context['form'] = AddressForm()
-		return context
+		context['form'] = AddressForm(self.request.POST, None)
+		return render(request, self.template_name, context)
+
+# @login_required
+# def shipping_address(request, pk):
+	def post(self, request, *args, **kwargs):
+		logged_user = request.user
+		form = AddressForm(request.POST)
+		if form.is_valid():	
+			form.instance.user = logged_user
+			form.save()
+		context = {}
+		context['object'] = self.get_object()
+		context['allcategories'] = Category.objects.all()
+		context['form'] = AddressForm(self.request.POST, None)
+
+		return render(request, self.template_name, context)
 	
