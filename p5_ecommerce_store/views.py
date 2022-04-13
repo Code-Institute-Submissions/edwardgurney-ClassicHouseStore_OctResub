@@ -1,10 +1,11 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic, View
-from .models import Product, Bag, BagItem, Category
+from .models import Product, Bag, BagItem, Category, ShippingAddress
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponseRedirect
 from .forms import AddressForm
 from django.views.generic.detail import SingleObjectMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 class StoreFrontView(generic.ListView):
 	template_name = 'p5_ecommerce_store/index.html'
@@ -109,23 +110,24 @@ def signup_view(request):
 			}
 	return render(request, 'registration/signup.html', context)
 
-class CheckoutView(SingleObjectMixin, View):
+class CheckoutView(LoginRequiredMixin, SingleObjectMixin, View):
 	template_name = 'p5_ecommerce_store/checkout.html'
 	model = Bag
 
 	def get(self, request, *args, **kwargs):
-	#def get_context_data(self, **kwargs):
-		#context = super().get_context_data(**kwargs)
+
 		context = {}
 		context['object'] = self.get_object()
 		context['allcategories'] = Category.objects.all()
 		context['form'] = AddressForm(self.request.POST, None)
+		context['shipping_addresses'] = ShippingAddress.objects.filter(user=request.user)
 		return render(request, self.template_name, context)
 
-# @login_required
-# def shipping_address(request, pk):
+
 	def post(self, request, *args, **kwargs):
 		logged_user = request.user
+		if 'user_address_selection' in request.POST:
+			return HttpResponseRedirect(f"/payment/{self.get_object().id}")
 		form = AddressForm(request.POST)
 		if form.is_valid():	
 			form.instance.user = logged_user
@@ -136,4 +138,6 @@ class CheckoutView(SingleObjectMixin, View):
 		context['form'] = AddressForm(self.request.POST, None)
 
 		return render(request, self.template_name, context)
-	
+
+def payment_view(request, pk):
+	return render(request, "p5_ecommerce_store/payment.html")	

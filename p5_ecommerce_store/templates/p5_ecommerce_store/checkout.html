@@ -1,6 +1,15 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
+<style>
+  .user_address {
+  width: 100%;
+    text-align: left;
+    border: 1px solid blue;
+    margin: 10px;
+    padding: 5px 10px;
+  }
+</style>
 <div class="container">
     <main>
       <div class="py-5 text-center">
@@ -28,7 +37,24 @@
               <strong>£{{object.total}}</strong>
             </li>
           </ul>
-            
+          <h2 class="text-primary">Select Address</h2>
+          <form method="post">{% csrf_token %}
+            <input type="hidden" name="user_address_selection">
+          {% for address in shipping_addresses %}
+          <div class="user_address">
+            <label for="address_{{forloop.counter}}">
+              <input id="address_{{forloop.counter}}" type="radio" name="address">
+              <p>
+              House Number: {{ address.house_number }}<br/>
+              Address: {{ address.address_1 }}<br/>
+              Post Code: {{ address.postcode }}
+            </p>
+            </label>
+          </div>
+          {% endfor %}
+          <button class="w-100 btn btn-primary btn-lg" type="submit">Make Payment</button>
+          </form>
+  
         </div>
         <div class="col-md-7 col-lg-8">
           <h4 class="mb-3">Shipping Address</h4>
@@ -41,6 +67,6 @@
             <button class="w-100 btn btn-primary btn-lg" type="submit">Save Address</button>
           </form>
         </div>
-      </div>
+              </div>
     </main>
 {% endblock %}
