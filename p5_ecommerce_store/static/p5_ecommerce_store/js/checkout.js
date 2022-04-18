@@ -1,8 +1,11 @@
       // This is your test publishable API key.
       const stripeKey = JSON.parse(document.getElementById('stripe-id').textContent)
       console.log(stripeKey)
-      const stripe = Stripe("pk_test_51KpqTKKMum47C0L1yixvLLYq2k4F53azrv5KoWQNCa6y68bFHCx4tAYFE4CzugAEAX3AX1D7jG8bmrm4EKWhSqKM00YVzWkcsR");
-
+      const bagId = JSON.parse(document.getElementById('bag-id').textContent)
+      const clientSecret = JSON.parse(document.getElementById('client-secret').textContent)
+      const returnUrl = JSON.parse(document.getElementById('return-url').textContent)
+      //const stripe = Stripe("pk_test_51KpqTKKMum47C0L1yixvLLYq2k4F53azrv5KoWQNCa6y68bFHCx4tAYFE4CzugAEAX3AX1D7jG8bmrm4EKWhSqKM00YVzWkcsR");
+      const stripe = Stripe(stripeKey)
       // The items the customer wants to buy
       const items = [{ id: "xl-tshirt" }];
       
@@ -10,19 +13,17 @@
       
       initialize();
       checkStatus();
-      
-      document
-        .querySelector("#payment-form")
-        .addEventListener("submit", handleSubmit);
-      
+      console.log(document.querySelector("#payment-form"))
+     
       // Fetches a payment intent and captures the client secret
       async function initialize() {
-        const response = await fetch("/create-payment-intent", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ items }),
-        });
-        const { clientSecret } = await response.json();
+        // const response = await fetch(`/create-payment-intent/${bagId}`, {
+        //   method: "GET",
+        //   // headers: { "Content-Type": "application/json" },
+        //   body: JSON.stringify(),
+        // });
+        // const { clientSecret } = await response.json();
+        // console.log(clientSecret)
       
         const appearance = {
           theme: 'stripe',
@@ -37,14 +38,16 @@
         e.preventDefault();
         setLoading(true);
       
+        console.log(returnUrl)
+
         const { error } = await stripe.confirmPayment({
           elements,
           confirmParams: {
             // Make sure to change this to your payment completion page
-            return_url: "http://localhost:4242/checkout.html",
+            return_url: `https://8000-edwardgurney-classichous-ulqtny37znu.ws-eu40.gitpod.io${returnUrl}`,
           },
         });
-      
+        console.log(error)
         // This point will only be reached if there is an immediate error when
         // confirming the payment. Otherwise, your customer will be redirected to
         // your `return_url`. For some payment methods like iDEAL, your customer will
@@ -58,7 +61,10 @@
       
         setLoading(false);
       }
-      
+      document
+      .querySelector("#payment-form")
+      .addEventListener("submit", handleSubmit);
+    
       // Fetches the payment intent status after payment submission
       async function checkStatus() {
         const clientSecret = new URLSearchParams(window.location.search).get(

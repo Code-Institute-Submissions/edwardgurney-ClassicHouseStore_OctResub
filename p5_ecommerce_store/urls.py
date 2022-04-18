@@ -1,5 +1,7 @@
 from django.urls import path
-from .views import StoreFrontView, ProductDetailView, BasketView, CategoryView, CheckoutView, payment_view
+from .views import (StoreFrontView, ProductDetailView, BasketView, 
+                    CategoryView, CheckoutView, payment_view,
+                    create_payment_intent, checkout_complete)
 
 
 urlpatterns = [
@@ -9,4 +11,6 @@ urlpatterns = [
     path('category/<int:pk>', CategoryView.as_view(), name='category'),
     path('checkout/<int:pk>', CheckoutView.as_view(), name='checkout'),
     path('payment/<int:pk>', payment_view, name='payment'),
+    path('create-payment-intent/<int:pk>', create_payment_intent, name='create_payment_intent'),
+    path('checkout-complete/<int:pk>', checkout_complete, name='checkout_complete'),
 ]

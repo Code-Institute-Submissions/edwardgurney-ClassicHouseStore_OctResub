@@ -10,6 +10,7 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 import stripe
 from django.http import JsonResponse
+from django.urls import reverse_lazy
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 class StoreFrontView(generic.ListView):
@@ -147,55 +148,30 @@ class CheckoutView(LoginRequiredMixin, SingleObjectMixin, View):
 @login_required
 def payment_view(request, pk):
 	context = {}
-	print(settings.STRIPE_PUBLIC_KEY)
+	context['client_secret'] = create_payment_intent(pk)
+	context['bag_id'] = pk
+	context['return_url'] = reverse_lazy('checkout_complete', kwargs={'pk':pk})
+	print(request.build_absolute_uri(reverse_lazy('checkout_complete', kwargs={'pk':pk})))
 	context['public_stripe'] = settings.STRIPE_PUBLIC_KEY
 	return render(request, "p5_ecommerce_store/payment.html", context)
 
-def create_payment_intent(request, pk):
+def create_payment_intent(pk):
 	bag = get_object_or_404(Bag, id=pk)
 	try:
 		# Create a PaymentIntent with the order amount and currency
 		intent = stripe.PaymentIntent.create(
-			amount=bag.total,
+			amount=int(bag.total*100),
 			currency='gbp',
 			automatic_payment_methods={
 				'enabled': True,
 			},
 		)
-		return JsonResponse({
-			'clientSecret': intent['client_secret']
-		})
+		return intent['client_secret']
 	except Exception as e:
-		return JsonResponse(error=str(e)), 403
+		print(e)
+		return None
 
-
-	#! /usr/bin/env python3.6
-# """
-# Python 3.6 or newer required.
-# """
-# import json
-# import os
-# import stripe
-
-# # This is your test secret API key.
-# stripe.api_key = 'sk_test_51KpqTKKMum47C0L1pS7g3Qe5PcXXRct2Y2sa0O8O5lOiOxXatT51bTI6OnIOe2H85USK5mQvRF2jQuYRRTjwHPjJ00P0FkodLC'
-
-# from flask import Flask, render_template, jsonify, request
-
-
-# app = Flask(__name__, static_folder='public',
-#             static_url_path='', template_folder='public')
-
-
-# def calculate_order_amount(items):
-#     # Replace this constant with a calculation of the order's amount
-#     # Calculate the order total on the server to prevent
-#     # people from directly manipulating the amount on the client
-#     return 1400
-
-
-# @app.route('/create-payment-intent', methods=['POST'])
-# def create_payment():
+def checkout_complete(request, pk):
+	context = {}
+	return render(request, "p5_ecommerce_store/thankyou.html", context)
 	
-# if __name__ == '__main__':
-#     app.run(port=4242)
