@@ -59,6 +59,7 @@
             <h4 class="mb-3">Payment</h4>
             <!-- Display a payment form -->
             <form id="payment-form">
+              {{ public_stripe|json_script:"stripe-id" }}
               <div id="payment-element">
               <!--Stripe.js injects the Payment Element-->
               </div>

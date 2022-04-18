@@ -1,4 +1,6 @@
       // This is your test publishable API key.
+      const stripeKey = JSON.parse(document.getElementById('stripe-id').textContent)
+      console.log(stripeKey)
       const stripe = Stripe("pk_test_51KpqTKKMum47C0L1yixvLLYq2k4F53azrv5KoWQNCa6y68bFHCx4tAYFE4CzugAEAX3AX1D7jG8bmrm4EKWhSqKM00YVzWkcsR");
 
       // The items the customer wants to buy

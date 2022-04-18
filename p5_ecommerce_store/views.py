@@ -6,6 +6,11 @@ from django.http import HttpResponseRedirect
 from .forms import AddressForm
 from django.views.generic.detail import SingleObjectMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.conf import settings
+from django.contrib.auth.decorators import login_required
+import stripe
+from django.http import JsonResponse
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
 class StoreFrontView(generic.ListView):
 	template_name = 'p5_ecommerce_store/index.html'
@@ -139,5 +144,58 @@ class CheckoutView(LoginRequiredMixin, SingleObjectMixin, View):
 
 		return render(request, self.template_name, context)
 
+@login_required
 def payment_view(request, pk):
-	return render(request, "p5_ecommerce_store/payment.html")	
+	context = {}
+	print(settings.STRIPE_PUBLIC_KEY)
+	context['public_stripe'] = settings.STRIPE_PUBLIC_KEY
+	return render(request, "p5_ecommerce_store/payment.html", context)
+
+def create_payment_intent(request, pk):
+	bag = get_object_or_404(Bag, id=pk)
+	try:
+		# Create a PaymentIntent with the order amount and currency
+		intent = stripe.PaymentIntent.create(
+			amount=bag.total,
+			currency='gbp',
+			automatic_payment_methods={
+				'enabled': True,
+			},
+		)
+		return JsonResponse({
+			'clientSecret': intent['client_secret']
+		})
+	except Exception as e:
+		return JsonResponse(error=str(e)), 403
+
+
+	#! /usr/bin/env python3.6
+# """
+# Python 3.6 or newer required.
+# """
+# import json
+# import os
+# import stripe
+
+# # This is your test secret API key.
+# stripe.api_key = 'sk_test_51KpqTKKMum47C0L1pS7g3Qe5PcXXRct2Y2sa0O8O5lOiOxXatT51bTI6OnIOe2H85USK5mQvRF2jQuYRRTjwHPjJ00P0FkodLC'
+
+# from flask import Flask, render_template, jsonify, request
+
+
+# app = Flask(__name__, static_folder='public',
+#             static_url_path='', template_folder='public')
+
+
+# def calculate_order_amount(items):
+#     # Replace this constant with a calculation of the order's amount
+#     # Calculate the order total on the server to prevent
+#     # people from directly manipulating the amount on the client
+#     return 1400
+
+
+# @app.route('/create-payment-intent', methods=['POST'])
+# def create_payment():
+	
+# if __name__ == '__main__':
+#     app.run(port=4242)
