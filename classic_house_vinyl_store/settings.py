@@ -110,6 +110,13 @@ LOGIN_REDIRECT_URL = '/'
 
 LOGOUT_REDIRECT_URL = '/'
 
+#EMAIL Credentials
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_KEY")
+EMAIL_HOST_USER = 'edwardgurney1979@gmail.com'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+
 WSGI_APPLICATION = 'classic_house_vinyl_store.wsgi.application'
 
 

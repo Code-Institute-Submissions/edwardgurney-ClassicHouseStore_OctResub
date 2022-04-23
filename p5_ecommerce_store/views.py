@@ -3,7 +3,7 @@ from django.views import generic, View
 from .models import Product, Bag, BagItem, Category, ShippingAddress
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponseRedirect
-from .forms import AddressForm
+from .forms import AddressForm, SignupForm
 from django.views.generic.detail import SingleObjectMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.conf import settings
@@ -11,6 +11,8 @@ from django.contrib.auth.decorators import login_required
 import stripe
 from django.http import JsonResponse
 from django.urls import reverse_lazy
+from django.core.mail import EmailMessage
+from django.template.loader import render_to_string, get_template
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 class StoreFrontView(generic.ListView):
@@ -97,16 +99,29 @@ class BasketView(View):
 
 		return bag
 
+def send_user_email(subject, message, recipient):
+	send_mail = EmailMessage(subject, message, to=[recipient], from_email=settings.EMAIL_HOST_USER)
+	send_mail.content_subtype = 'html'
+	try:
+		send_mail.send(fail_silently=True)
+	except Exception as e:
+		print(e)
+		pass
+
+
 def signup_view(request):
 	unsubmitted_form = UserCreationForm()
 	if request.method == 'POST':
 		form = UserCreationForm(request.POST)
-		print(form)
 		if form.is_valid():
 			form.save()
+			message = get_template('p5_ecommerce_store/signup_confirmation.html')
+			subject = "Thankyou for signing up"
+			recipient = form.instance.email
+
+			send_user_email(subject, message, recipient)
 			return HttpResponseRedirect('/login')
 		else:
-			print(form.errors)
 			context = {
 				'form': form
 			}
