@@ -38,7 +38,16 @@
       </form>
       {% if request.user.is_authenticated %}
       <div>
-        <form></form>
+        <p>Average Rating: 5</p>
+        <p>Rate this record!!</p>
+        <form method="post" action="{% url 'rate_record' product.id %}">{% csrf_token %}
+          <input type="submit" name="rate" value="1">
+          <input type="submit" name="rate" value="2">
+          <input type="submit" name="rate" value="3">
+          <input type="submit" name="rate" value="4">
+          <input type="submit" name="rate" value="5">
+
+        </form>
       </div>
       {% endif %}
     </div>

@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic, View
-from .models import Product, Bag, BagItem, Category, ShippingAddress
+from .models import (Product, Bag, BagItem, Category, ShippingAddress,
+					Rating)
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponseRedirect
 from .forms import AddressForm, SignupForm
@@ -190,3 +191,12 @@ def checkout_complete(request, pk):
 	context = {}
 	return render(request, "p5_ecommerce_store/thankyou.html", context)
 	
+@login_required
+def rate_record(request, pk):
+	rated_product = get_object_or_404(Product, id=pk)
+	new_rating, created = Rating.objects.get_or_create(user=request.user, product=rated_product)
+	user_rating = request.POST.get('rate')
+	print(user_rating)
+	new_rating.rating_number = user_rating
+	new_rating.save()
+	return HttpResponseRedirect(f'/product_detail/{pk}')

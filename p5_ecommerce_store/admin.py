@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Product, Category, Bag, BagItem, ShippingAddress
+from .models import (Product, Category, Bag, BagItem, ShippingAddress,
+                    Rating)
 from django_summernote.admin import SummernoteModelAdmin
 
 @admin.register(Product)
@@ -18,3 +19,4 @@ admin.site.register(Category)
 admin.site.register(Bag)
 admin.site.register(BagItem)
 admin.site.register(ShippingAddress)
+admin.site.register(Rating)

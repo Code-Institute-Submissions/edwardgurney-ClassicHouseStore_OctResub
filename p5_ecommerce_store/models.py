@@ -101,7 +101,7 @@ class ShippingAddress(models.Model):
 class Rating(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey('Product', on_delete=models.CASCADE)
-    rating_number = models.IntegerField()
+    rating_number = models.IntegerField(default=0)
 
     def __str__(self):
         return f'{self.product} rated {self.rating_number}'
