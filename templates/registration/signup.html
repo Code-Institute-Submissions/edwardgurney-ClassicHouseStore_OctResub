@@ -72,6 +72,10 @@ body {
   border-top-right-radius: 0;
 }
 
+.error {
+  color: red;
+}
+
 </style>  
    
     <!-- Custom styles for this template -->
@@ -80,29 +84,16 @@ body {
   <body class="text-center">
     
 <main class="form-signin">
-    {% for error in forms.errors %}
-    <p>{{ error }}</p>
-    {% endfor %}
   <form method="POST">{% csrf_token %}
     <h1 class="h3 mb-3 fw-normal">Please sign-up</h1>
-
+    {% for field in form %}
     <div class="form-floating">
-      <input type="text" class="form-control" name="username" id="floatingInput" placeholder="username">
-      <label for="floatingInput">Username</label>
+      <label for="floatingInput">{{ field.label }}</label>
+      <span class="error">{{ field.errors }}</span>
+      {{ field }} 
     </div>
-    <div class="form-floating">
-      <input type="text" class="form-control" name="email" id="floatingInput" placeholder="email">
-      <label for="floatingInput">Email</label>
-    </div>
-    <div class="form-floating">
-      <input type="password" class="form-control" name="password1" id="floatingPassword" placeholder="Password">
-      <label for="floatingPassword">Password</label>
-    </div>
-    <div class="form-floating">
-        <input type="password" class="form-control" name="password2" id="floatingPassword" placeholder="Re-type Password">
-        <label for="floatingPassword">Re-type Password</label>
-      </div>
-
+    {% endfor %}
+    
     <div class="checkbox mb-3">
       <label>
         <input type="checkbox" value="remember-me"> Remember me

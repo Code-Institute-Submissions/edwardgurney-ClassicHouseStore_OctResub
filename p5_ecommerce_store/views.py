@@ -104,19 +104,19 @@ def send_user_email(subject, message, recipient):
 	send_mail = EmailMessage(subject, message, to=[recipient], from_email=settings.EMAIL_HOST_USER)
 	send_mail.content_subtype = 'html'
 	try:
-		send_mail.send(fail_silently=True)
+		send_mail.send()
 	except Exception as e:
 		print(e)
 		pass
 
 
 def signup_view(request):
-	unsubmitted_form = UserCreationForm()
+	unsubmitted_form = SignupForm()
 	if request.method == 'POST':
-		form = UserCreationForm(request.POST)
+		form = SignupForm(request.POST)
 		if form.is_valid():
 			form.save()
-			message = get_template('p5_ecommerce_store/signup_confirmation.html')
+			message = get_template('p5_ecommerce_store/signup_confirmation.html').render({})
 			subject = "Thankyou for signing up"
 			recipient = form.instance.email
 
