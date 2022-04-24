@@ -35,6 +35,16 @@ class Product(models.Model):
     def __str__(self):
         return self.title
 
+    @property
+    def average_rating(self):
+        try:
+            total_rating = 0
+            for rating in Rating.objects.filter(product=self):
+                total_rating = total_rating + rating.rating_number
+            return total_rating / Rating.objects.filter(product=self).count()
+        except Exception:
+            return "There are no ratings yet, be the first to rate this record!!"
+
 class Order(models.Model):
     order_number = models.CharField(max_length=100, unique=True)
     customer = models.ForeignKey(User, on_delete=models.CASCADE)

@@ -196,7 +196,18 @@ def rate_record(request, pk):
 	rated_product = get_object_or_404(Product, id=pk)
 	new_rating, created = Rating.objects.get_or_create(user=request.user, product=rated_product)
 	user_rating = request.POST.get('rate')
-	print(user_rating)
 	new_rating.rating_number = user_rating
 	new_rating.save()
 	return HttpResponseRedirect(f'/product_detail/{pk}')
+
+
+def search_view(request):
+	template_name = 'p5_ecommerce_store/index.html'
+	search_item = request.GET.get('search_input')
+	title_filter = Product.objects.filter(title__contains=search_item)
+	artist_filter = Product.objects.filter(artist__contains=search_item)
+	all_queryset = title_filter | artist_filter
+	context = {}
+	context['allcategories'] = Category.objects.all()
+	context['object_list'] = all_queryset
+	return render(request, template_name, context)

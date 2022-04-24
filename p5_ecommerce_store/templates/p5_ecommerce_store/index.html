@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block customcss %}
+<link href="{% static 'p5_ecommerce_store/detail.css' %}" rel="stylesheet">
+{% endblock %}
 {% load cloudinary %}  
 {% block content %}
+
 
 
 <main role="main">
@@ -15,26 +20,31 @@
           {% for product in object_list %}
           <div class="col-md-4">
             <div class="card mb-4 shadow-sm">
+              <a href="{% url 'product_detail' product.id %}">
               {% cloudinary product.image format="jpg" width=288 height=350 class="bd-placeholder-img card-img-top" crop="fill" %}
               <!-- <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="{{ product.image.url }}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"/><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text> -->
+              </a>
               <div class="card-body">
-                <p class="card-text">
-                  Title: {{product.title}}</p>
-                  <p> Artist: {{ product.artist }}</p>
-                  <p> Label: {{ product.label }}</p>
-                  <p> Price: {{ product.price }}</p>
-                  <p> Genre: {{ product.category }}</p>
+                <p class="card-text"><strong>
+                  Title:</strong> {{product.title}}</p>
+                  <p><strong> Artist:</strong> {{ product.artist }}</p>
+                  <p><strong> Label:</strong> {{ product.label }}</p>
+                  <p><strong> Price:</strong> {{ product.price }}</p>
+                  <p><strong> Genre:</strong> {{ product.category }}</p>
+                  <hr>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
                     <a href="{% url 'product_detail' product.id %}">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                    <button type="button" class="btn btn-sm btn-secondary bg-dark">View</button>
                     </a>
                     <form action="{% url 'basket' %}" method="GET">{% csrf_token%}
                       <input type="hidden" name="product_id" value="{{product.id}}"/>
-                          <button type="submit" class="btn btn-sm btn-outline-secondary">Add to Basket</button>
+                          <button type="submit" class="btn btn-sm btn-secondary bg-dark">Add to Basket</button>
                     </form>
                   </div>
-                  <button type="button" class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-play"></i>Listen</button>
+                  <a href="{% url 'product_detail' product.id %}">
+                  <button type="button" class="btn btn-sm btn-secondary bg-dark"><i class="fa-solid fa-play"></i>Listen</button>
+                  </a>
                 </div>
               </div>
             </div>

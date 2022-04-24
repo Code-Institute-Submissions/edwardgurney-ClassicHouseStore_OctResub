@@ -34,7 +34,7 @@ Features search as filter and search will allow users to hunt down what they are
 
 ### *Marketing*
 
-In addition to the above, some further marketing strategies will be used to optimise the sites reach. Search Engine Optimization (SEO) has been considered throughtout development in an attempt to improve the search engine ranking of the site. To do this I perfromed an exercise were I identifed what I thought would be the keywords that people would use when searching for a site. I used these words in the development when coding, and added some in the keywords meta tag in the base template. 
+In addition to the above, some further marketing strategies will be used to optimise the sites reach. Search Engine Optimization (SEO) has been considered throughtout development in an attempt to improve the search engine ranking of the site. To do this I perfromed an exercise where I identifed what I thought would be the keywords that people would use when searching for a site. I used these words in the development when coding, and added some in the keywords meta tag in the base template. 
 
 There is also a site map that can be accessed from the homepage, and this is a way to improve a sites search engine ranking and allows search engine bot crawling.
 
@@ -53,10 +53,61 @@ When users sign up they need to provide an e-mail address and they can also sign
 - I want records to be easily finadable, so that I can listen to the music again, or find them if I am returning to the site to purchaase.
 - I want my basket/bag to keep what I have added to basket, so that if I don't purchase the first time, I can return to the site later and purchase. 
 ### *User Stories*
+Below is an image of the original user stories that was performed at project initiation, these were what needed to be implemented for the project to be a success. In total there are 20 user stories. The second image below is the Agile tool used in Github during development, this was used to map the user stories to the project goals. During development there was an additional user story implemented, taking the toal to 21.
+
+<details><summary>An image of the user stories during the project planning stage</summary>
+
+
+<img src="media/user_stories.png">
+
+</details>
+
+<details><summary>This second image shows the Agile tool used during development</summary>
+
+<img src="media/user_stories.png">
+
+</details>
 
 ## **Design**
 
 ### *Balsamiq Wireframe*
+During the project planning stage, some wireframes were constructed for the homepage, product detail page and site map, and additionally the homepage for a mobile and smaller screens.
+<br>
+<br>
+
+### *Homepage - Larger Screens*
+
+<img src="media/images/home_page.png">
+
+<br>
+<br>
+
+### *Product Details - Larger Screens*
+
+<img src="media/images/product_detail_page.png">
+
+<br>
+<br>
+
+### *Site Map - Larger Screens*
+
+<img src="media/images/site_map.png">
+<br>
+<br>
+
+### *Homepage - Mobile Screens*
+
+<img src="media/images/phone_wireframe.png">
+<br>
+<br>
+
+## **Database Schema**
+
+During the planning stage, entity relationship diagrams were created to plan the models that would be required during development. In total, there were 5 models designed at this stage. These were User, Shipping, Product, Bag and Order models. 
+
+These can be viewed below:
+
+<img src="media/entity_relationship_diagram_2.png">
 
 ### **Features to Implement in future Versions**
 
