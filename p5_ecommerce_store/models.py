@@ -29,8 +29,8 @@ class Product(models.Model):
     release_date = models.DateField(auto_now=False)
     image = CloudinaryField('image', default='placeholder')
     price = models.DecimalField(max_digits=6, decimal_places=2)
-    audio_file = models.FileField(blank=True, null=True)
-    audio_link = models.URLField(blank=True, null=True)
+    preview_audio_file = models.FileField(blank=True, null=True)
+    preview_audio_link = models.URLField(blank=True, null=True)
 
     def __str__(self):
         return self.title
