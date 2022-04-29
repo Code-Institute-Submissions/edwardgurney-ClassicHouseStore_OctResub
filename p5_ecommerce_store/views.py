@@ -14,6 +14,7 @@ from django.http import JsonResponse
 from django.urls import reverse_lazy
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string, get_template
+from django.contrib import messages
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 class StoreFrontView(generic.ListView):
@@ -101,6 +102,7 @@ def send_user_email(subject, message, recipient):
 	try:
 		send_mail.send()
 	except Exception as e:
+		messages.add_message(request, messages.WARNING, e)
 		pass
 
 
