@@ -96,7 +96,7 @@ class BasketView(View):
 
 		return bag
 
-def send_user_email(subject, message, recipient):
+def send_user_email(request, subject, message, recipient):
 	send_mail = EmailMessage(subject, message, to=[recipient], from_email=settings.EMAIL_HOST_USER)
 	send_mail.content_subtype = 'html'
 	try:
@@ -116,7 +116,7 @@ def signup_view(request):
 			subject = "Thankyou for signing up"
 			recipient = form.instance.email
 
-			send_user_email(subject, message, recipient)
+			send_user_email(request, subject, message, recipient)
 			return HttpResponseRedirect('/login')
 		else:
 			context = {
