@@ -45,19 +45,14 @@ class BasketView(View):
 
 	def get(self, request, *args, **kwargs):
 		current_bag = self.get_object()
-		print(current_bag)
 		product_id = request.GET.get('product_id')
-		print(product_id)
 		user_quantity = int(request.GET.get('quantity', 1))
-		print(user_quantity)
 		if product_id:
 			current_product = get_object_or_404(Product, id=product_id)
-			print(current_product)
 			if user_quantity > 0:
 				current_bag_item, created = BagItem.objects.get_or_create(bag=current_bag, product=current_product)
 				current_bag_item.quantity = user_quantity
 				current_bag_item.save()
-				print(current_bag_item)
 				current_bag.save()
 			else:
 				try:
@@ -106,7 +101,6 @@ def send_user_email(subject, message, recipient):
 	try:
 		send_mail.send()
 	except Exception as e:
-		print(e)
 		pass
 
 
@@ -116,7 +110,7 @@ def signup_view(request):
 		form = SignupForm(request.POST)
 		if form.is_valid():
 			form.save()
-			message = get_template('p5_ecommerce_store/signup_confirmation.html').render({})
+			message = get_template('p5_ecommerce_store/signup_confirmation.html').render()
 			subject = "Thankyou for signing up"
 			recipient = form.instance.email
 
