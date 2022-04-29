@@ -41,11 +41,19 @@
             <hr class="my-4">
   
             <h4 class="mb-3">Payment</h4>
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+              {% endif %}
             <!-- Display a payment form -->
             <form id="payment-form">
               {{ public_stripe|json_script:"stripe-id" }}
               {{ bag_id|json_script:"bag-id" }}
               {{ return_url|json_script:"return-url" }}
+              {{ return_url }}
               {{ client_secret|json_script:"client-secret" }}
               <div id="payment-element">
               <!--Stripe.js injects the Payment Element-->

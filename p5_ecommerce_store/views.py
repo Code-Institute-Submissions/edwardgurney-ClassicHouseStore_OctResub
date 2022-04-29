@@ -96,13 +96,12 @@ class BasketView(View):
 
 		return bag
 
-def send_user_email(request, subject, message, recipient):
+def send_user_email(subject, message, recipient):
 	send_mail = EmailMessage(subject, message, to=[recipient], from_email=settings.EMAIL_HOST_USER)
 	send_mail.content_subtype = 'html'
 	try:
 		send_mail.send()
 	except Exception as e:
-		messages.add_message(request, messages.WARNING, e)
 		pass
 
 
@@ -116,7 +115,7 @@ def signup_view(request):
 			subject = "Thankyou for signing up"
 			recipient = form.instance.email
 
-			send_user_email(request, subject, message, recipient)
+			send_user_email(subject, message, recipient)
 			return HttpResponseRedirect('/login')
 		else:
 			context = {
@@ -160,14 +159,15 @@ class CheckoutView(LoginRequiredMixin, SingleObjectMixin, View):
 @login_required
 def payment_view(request, pk):
 	context = {}
-	context['client_secret'] = create_payment_intent(pk)
+	context['client_secret'] = create_payment_intent(request, pk)
 	context['bag_id'] = pk
-	context['return_url'] = reverse_lazy('checkout_complete', kwargs={'pk':pk})
+	#context['return_url'] = reverse_lazy('checkout_complete', kwargs={'pk':pk})
+	context['return_url'] = request.build_absolute_uri(reverse_lazy('checkout_complete', kwargs={'pk':pk}))
 	print(request.build_absolute_uri(reverse_lazy('checkout_complete', kwargs={'pk':pk})))
 	context['public_stripe'] = settings.STRIPE_PUBLIC_KEY
 	return render(request, "p5_ecommerce_store/payment.html", context)
 
-def create_payment_intent(pk):
+def create_payment_intent(request, pk):
 	bag = get_object_or_404(Bag, id=pk)
 	try:
 		# Create a PaymentIntent with the order amount and currency
@@ -180,6 +180,7 @@ def create_payment_intent(pk):
 		)
 		return intent['client_secret']
 	except Exception as e:
+		messages.add_message(request, messages.WARNING, e)
 		print(e)
 		return None
 

@@ -4,10 +4,11 @@
       const bagId = JSON.parse(document.getElementById('bag-id').textContent)
       const clientSecret = JSON.parse(document.getElementById('client-secret').textContent)
       const returnUrl = JSON.parse(document.getElementById('return-url').textContent)
+      console.log(returnUrl)
+      console.log("returnUrl")
       //const stripe = Stripe("pk_test_51KpqTKKMum47C0L1yixvLLYq2k4F53azrv5KoWQNCa6y68bFHCx4tAYFE4CzugAEAX3AX1D7jG8bmrm4EKWhSqKM00YVzWkcsR");
       const stripe = Stripe(stripeKey)
       // The items the customer wants to buy
-      const items = [{ id: "xl-tshirt" }];
       
       let elements;
       
@@ -44,7 +45,9 @@
           elements,
           confirmParams: {
             // Make sure to change this to your payment completion page
-            return_url: `https://8000-edwardgurney-classichous-ulqtny37znu.ws-eu40.gitpod.io${returnUrl}`,
+            // return_url: `https://8000-edwardgurney-classichous-ulqtny37znu.ws-eu40.gitpod.io${returnUrl}`,
+            return_url: `${returnUrl}`,
+
           },
         });
         console.log(error)
