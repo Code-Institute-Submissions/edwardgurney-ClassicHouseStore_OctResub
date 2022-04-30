@@ -178,6 +178,8 @@ def create_payment_intent(request, pk):
 				'enabled': True,
 			},
 		)
+		messages.add_message(request, messages.WARNING, intent['client_secret'])
+
 		return intent['client_secret']
 	except Exception as e:
 		messages.add_message(request, messages.WARNING, e)
