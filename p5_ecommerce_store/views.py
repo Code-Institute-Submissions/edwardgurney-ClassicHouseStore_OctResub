@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic, View
 from .models import (Product, Bag, BagItem, Category, ShippingAddress,
-					Rating)
+					Rating, Order)
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponseRedirect
 from .forms import AddressForm, SignupForm
@@ -143,8 +143,27 @@ class CheckoutView(LoginRequiredMixin, SingleObjectMixin, View):
 
 	def post(self, request, *args, **kwargs):
 		logged_user = request.user
+		bag = self.get_object()
 		if 'user_address_selection' in request.POST:
-			return HttpResponseRedirect(f"/payment/{self.get_object().id}")
+			address = ShippingAddress.objects.get(id=request.POST.get('address'))
+		
+			if bag.order == None:
+				new_order = Order.objects.create(
+					order_number = bag.id,
+					customer = bag.user,
+					order_total = bag.total, 
+					shipping_address = address
+				)
+				bag.order = new_order
+				bag.save()
+			else:
+				order = bag.order
+				order.order_total = bag.total
+				order.shipping_address = address
+				order.save()
+			print(bag.id)
+			print(bag.order.id)
+			return HttpResponseRedirect(f"/payment/{bag.order.id}")
 		form = AddressForm(request.POST)
 		if form.is_valid():	
 			form.instance.user = logged_user
@@ -158,21 +177,21 @@ class CheckoutView(LoginRequiredMixin, SingleObjectMixin, View):
 
 @login_required
 def payment_view(request, pk):
+	order = get_object_or_404(Order, id=pk)
 	context = {}
 	context['client_secret'] = create_payment_intent(request, pk)
-	context['bag_id'] = pk
-	#context['return_url'] = reverse_lazy('checkout_complete', kwargs={'pk':pk})
-	context['return_url'] = request.build_absolute_uri(reverse_lazy('checkout_complete', kwargs={'pk':pk}))
-	print(request.build_absolute_uri(reverse_lazy('checkout_complete', kwargs={'pk':pk})))
+	context['bag_id'] = order.bag.id
+	context['return_url'] = reverse_lazy('checkout_complete', kwargs={'pk':pk})
+	#context['return_url'] = request.build_absolute_uri(reverse_lazy('checkout_complete', kwargs={'pk':pk}))
 	context['public_stripe'] = settings.STRIPE_PUBLIC_KEY
 	return render(request, "p5_ecommerce_store/payment.html", context)
 
 def create_payment_intent(request, pk):
-	bag = get_object_or_404(Bag, id=pk)
+	order = get_object_or_404(Order, id=pk)
 	try:
 		# Create a PaymentIntent with the order amount and currency
 		intent = stripe.PaymentIntent.create(
-			amount=int(bag.total*100),
+			amount=int(order.order_total*100),
 			currency='gbp',
 			automatic_payment_methods={
 				'enabled': True,
@@ -187,7 +206,13 @@ def create_payment_intent(request, pk):
 		return None
 
 def checkout_complete(request, pk):
-	context = {}
+	order = get_object_or_404(Order, id=pk)
+	bag = order.bag
+	bag.status = 'checked_out'
+	bag.save()
+	context = {
+		'order':order
+	}
 	return render(request, "p5_ecommerce_store/thankyou.html", context)
 	
 @login_required

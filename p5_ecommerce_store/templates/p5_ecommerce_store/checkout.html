@@ -43,7 +43,7 @@
           {% for address in shipping_addresses %}
           <div class="user_address">
             <label for="address_{{forloop.counter}}">
-              <input id="address_{{forloop.counter}}" type="radio" name="address">
+              <input id="address_{{forloop.counter}}" type="radio" name="address" value="{{address.id}}">
               <p>
               House Number: {{ address.house_number }}<br/>
               Address: {{ address.address_1 }}<br/>
