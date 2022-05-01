@@ -15,6 +15,7 @@ from django.urls import reverse_lazy
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string, get_template
 from django.contrib import messages
+from django.views.generic.base import TemplateView
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 class StoreFrontView(generic.ListView):
@@ -255,3 +256,6 @@ def search_view(request):
 	context['allcategories'] = Category.objects.all()
 	context['object_list'] = all_queryset
 	return render(request, template_name, context)
+
+class SiteMapView(TemplateView):
+	template_name = "p5_ecommerce_store/sitemap.html"
