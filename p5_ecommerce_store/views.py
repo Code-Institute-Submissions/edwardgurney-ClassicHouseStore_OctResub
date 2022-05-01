@@ -90,7 +90,7 @@ class BasketView(View):
 					if userbag.count() > 1:
 						mergebags(userbag)
 					bag = userbag[0]
-				except Bag.DoesNotExist:
+				except IndexError:
 					bag = Bag()
 					bag.user = self.request.user
 					bag.save()		
@@ -177,8 +177,6 @@ class CheckoutView(LoginRequiredMixin, SingleObjectMixin, View):
 				order.order_total = bag.total
 				order.shipping_address = address
 				order.save()
-			print(bag.id)
-			print(bag.order.id)
 			return HttpResponseRedirect(f"/payment/{bag.order.id}")
 		form = AddressForm(request.POST)
 		if form.is_valid():	
@@ -198,8 +196,8 @@ def payment_view(request, pk):
 	context['client_secret'] = create_payment_intent(request, pk)
 	context['bag_id'] = order.bag.id
 	context['order'] = order
-	# context['return_url'] = reverse_lazy('checkout_complete', kwargs={'pk':pk})
-	context['return_url'] = request.build_absolute_uri(reverse_lazy('checkout_complete', kwargs={'pk':pk}))
+	context['return_url'] = reverse_lazy('checkout_complete', kwargs={'pk':pk})
+	# context['return_url'] = request.build_absolute_uri(reverse_lazy('checkout_complete', kwargs={'pk':pk}))
 	context['public_stripe'] = settings.STRIPE_PUBLIC_KEY
 	return render(request, "p5_ecommerce_store/payment.html", context)
 
@@ -214,20 +212,22 @@ def create_payment_intent(request, pk):
 				'enabled': True,
 			},
 		)
-		messages.add_message(request, messages.WARNING, intent['client_secret'])
 
 		return intent['client_secret']
 	except Exception as e:
 		messages.add_message(request, messages.WARNING, e)
-		print(e)
 		return None
 
 def checkout_complete(request, pk):
 	order = get_object_or_404(Order, id=pk)
 	bag = order.bag
-	bag.status = 'checked_out'
+	bag.state = 'checkout'
 	bag.save()
-	message = get_template('p5_ecommerce_store/order_confirmation_email.html').render()
+	try:
+		del request.session['bag_id']
+	except Exception:
+		pass
+	message = get_template('p5_ecommerce_store/order_confirmation_email.html').render({'order':order})
 	subject = "Your Order Was Sucessful"
 	recipient = request.user.email
 	send_user_email(subject, message, recipient)
