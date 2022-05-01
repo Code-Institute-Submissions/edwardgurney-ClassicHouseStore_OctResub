@@ -196,8 +196,7 @@ def payment_view(request, pk):
 	context['client_secret'] = create_payment_intent(request, pk)
 	context['bag_id'] = order.bag.id
 	context['order'] = order
-	context['return_url'] = reverse_lazy('checkout_complete', kwargs={'pk':pk})
-	# context['return_url'] = request.build_absolute_uri(reverse_lazy('checkout_complete', kwargs={'pk':pk}))
+	context['return_url'] = "%s%s" %(settings.BASE_URL, reverse_lazy('checkout_complete', kwargs={'pk':pk}))
 	context['public_stripe'] = settings.STRIPE_PUBLIC_KEY
 	return render(request, "p5_ecommerce_store/payment.html", context)
 
