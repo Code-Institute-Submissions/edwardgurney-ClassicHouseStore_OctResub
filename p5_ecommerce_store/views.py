@@ -40,6 +40,20 @@ class ProductDetailView(generic.DetailView):
 	model = Product
 	template_name = 'p5_ecommerce_store/product_detail.html'
 
+def mergebags(queryset):
+	current_bag = queryset[0]
+	for bag in queryset[1:]:
+		for item in bag.bagitem_set.all():
+			if current_bag.bagitem_set.filter(product=item.product).exists():
+				current_bag_item = current_bag.bagitem_set.filter(product=item.product)[0]
+				current_bag_item.quantity += item.quantity
+			else:
+				item.bag = current_bag
+		bag.state = 'closed'
+		bag.save()
+	current_bag.save()
+
+
 class BasketView(View):
 	template_name = 'p5_ecommerce_store/basket.html'
 	model = Bag
@@ -72,8 +86,10 @@ class BasketView(View):
 		if old_bag_id is None:
 			if self.request.user.is_authenticated:
 				try:
-					userbag = Bag.objects.get(user=self.request.user, state='open')
-					bag = userbag
+					userbag = Bag.objects.filter(user=self.request.user, state='open')
+					if userbag.count() > 1:
+						mergebags(userbag)
+					bag = userbag[0]
 				except Bag.DoesNotExist:
 					bag = Bag()
 					bag.user = self.request.user
@@ -210,6 +226,10 @@ def checkout_complete(request, pk):
 	bag = order.bag
 	bag.status = 'checked_out'
 	bag.save()
+	message = get_template('p5_ecommerce_store/order_confirmation_email.html').render()
+	subject = "Your Order Was Sucessful"
+	recipient = request.user.email
+	send_user_email(subject, message, recipient)
 	context = {
 		'order':order
 	}
