@@ -3,6 +3,7 @@ from .models import (Product, Category, Bag, BagItem, ShippingAddress,
                     Rating)
 from django_summernote.admin import SummernoteModelAdmin
 
+
 @admin.register(Product)
 class ProductAdmin(SummernoteModelAdmin):
 

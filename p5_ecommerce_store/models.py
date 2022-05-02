@@ -6,20 +6,21 @@ from cloudinary.models import CloudinaryField
 from decimal import Decimal
 # User = get_user_model()
 
+
 class Category(models.Model):
 
     class Meta:
         verbose_name_plural = 'categories'
-        
+
     name = models.CharField(max_length=250)
-    
 
     def __str__(self):
         return self.name
 
 
 class Product(models.Model):
-    category = models.ForeignKey('Category', null=True, blank=True, on_delete=models.SET_NULL)
+    category = models.ForeignKey('Category', null=True, blank=True,
+                                 on_delete=models.SET_NULL)
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=250, unique=True)
     artist = models.CharField(max_length=200)
@@ -45,19 +46,20 @@ class Product(models.Model):
         except Exception:
             return "There are no ratings yet, be the first to rate this record!!"
 
+
 class Order(models.Model):
     order_number = models.CharField(max_length=100, unique=True)
     customer = models.ForeignKey(User, on_delete=models.CASCADE)
     order_date = models.DateTimeField(auto_now_add=True)
     order_total = models.DecimalField(max_digits=10, decimal_places=2)
     shipping_address = models.ForeignKey(
-        'ShippingAddress', 
-        on_delete=models.SET_NULL, 
+        'ShippingAddress',
+        on_delete=models.SET_NULL,
         null=True, blank=True)
-
 
     def __str__(self):
         return self.order_number
+
 
 class BagItem(models.Model):
     product = models.ForeignKey('Product', on_delete=models.CASCADE)
@@ -71,6 +73,7 @@ class BagItem(models.Model):
     def get_bag_item_total(self):
         return Decimal(self.product.price) * Decimal(self.quantity)
 
+
 class Bag(models.Model):
     STATE = (
         ('open', 'open'),
@@ -79,10 +82,12 @@ class Bag(models.Model):
     )
     bag_items = models.ManyToManyField('Product', through='BagItem')
     total = models.DecimalField(default=0.00, max_digits=10, decimal_places=2)
-    order = models.OneToOneField('Order', on_delete=models.SET_NULL, null=True, blank=True)
+    order = models.OneToOneField('Order', on_delete=models.SET_NULL, null=True,
+                                 blank=True)
     creation_date = models.DateTimeField(auto_now_add=True)
     state = models.CharField(choices=STATE, max_length=15, default='open')
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True,
+                             null=True)
 
     def __str__(self):
         return f"{self.id}"
@@ -90,9 +95,11 @@ class Bag(models.Model):
     def save(self, *args, **kwargs):
         pending_total = Decimal(0)
         for item in self.bagitem_set.all():
-            pending_total = Decimal(pending_total) + Decimal(item.get_bag_item_total)
+            pending_total = Decimal(pending_total) + Decimal(
+                            item.get_bag_item_total)
         self.total = pending_total
         super(Bag, self).save(*args, **kwargs)
+
 
 class ShippingAddress(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -107,6 +114,7 @@ class ShippingAddress(models.Model):
 
     def __str__(self):
         return f"{self.user}"
+
 
 class Rating(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

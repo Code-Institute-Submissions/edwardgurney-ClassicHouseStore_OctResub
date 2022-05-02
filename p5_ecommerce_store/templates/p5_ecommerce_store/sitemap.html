@@ -1,15 +1,17 @@
+{% load static %}
+<link href="{% static 'p5_ecommerce_store/detail.css' %}" rel="stylesheet">
+
 <header>
       
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <a class="navbar-brand" href="{% url 'home' %}">Classic House Vinyl Store</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav mr-auto">
+
+      <div class="collapse navbar-collapse center" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto center">
+          <div>
             <a href="{% url 'home' %}">
-                <button class="w-100 btn btn-lg btn-primary" type="button">Home</button>
+                <button class="w-100 btn btn-lg btn-primary center" type="button">Home</button>
               </a>
+          </div>
+          <br>
               <a href="{% url 'login' %}">
                 <button class="w-100 btn btn-lg btn-primary" type="button">Login</button>
               </a>

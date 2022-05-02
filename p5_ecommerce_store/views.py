@@ -18,6 +18,7 @@ from django.contrib import messages
 from django.views.generic.base import TemplateView
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
+
 class StoreFrontView(generic.ListView):
 	template_name = 'p5_ecommerce_store/index.html'
 	queryset = Product.objects.all()
@@ -26,6 +27,7 @@ class StoreFrontView(generic.ListView):
 		context = super().get_context_data(**kwargs)
 		context['allcategories'] = Category.objects.all()
 		return context
+
 
 class CategoryView(generic.DetailView):
 	template_name = 'p5_ecommerce_store/index.html'
@@ -37,9 +39,11 @@ class CategoryView(generic.DetailView):
 		context['object_list'] = Product.objects.filter(category=self.get_object())
 		return context
 
+
 class ProductDetailView(generic.DetailView):
 	model = Product
 	template_name = 'p5_ecommerce_store/product_detail.html'
+
 
 def mergebags(queryset):
 	current_bag = queryset[0]
@@ -113,6 +117,7 @@ class BasketView(View):
 
 		return bag
 
+
 def send_user_email(subject, message, recipient):
 	send_mail = EmailMessage(subject, message, to=[recipient], from_email=settings.EMAIL_HOST_USER)
 	send_mail.content_subtype = 'html'
@@ -143,6 +148,7 @@ def signup_view(request):
 				'form': unsubmitted_form
 			}
 	return render(request, 'registration/signup.html', context)
+
 
 class CheckoutView(LoginRequiredMixin, SingleObjectMixin, View):
 	template_name = 'p5_ecommerce_store/checkout.html'
@@ -256,6 +262,7 @@ def search_view(request):
 	context['allcategories'] = Category.objects.all()
 	context['object_list'] = all_queryset
 	return render(request, template_name, context)
+
 
 class SiteMapView(TemplateView):
 	template_name = "p5_ecommerce_store/sitemap.html"
