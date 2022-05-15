@@ -88,6 +88,12 @@ class Bag(models.Model):
     state = models.CharField(choices=STATE, max_length=15, default='open')
     user = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True,
                              null=True)
+    
+    @property
+    def is_empty(self):
+        if self.bagitem_set.all().count() > 0:
+            return False
+        return True
 
     def __str__(self):
         return f"{self.id}"
@@ -123,3 +129,4 @@ class Rating(models.Model):
 
     def __str__(self):
         return f'{self.product} rated {self.rating_number}'
+

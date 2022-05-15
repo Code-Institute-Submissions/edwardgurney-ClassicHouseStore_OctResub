@@ -155,13 +155,15 @@ class CheckoutView(LoginRequiredMixin, SingleObjectMixin, View):
 	model = Bag
 
 	def get(self, request, *args, **kwargs):
-
-		context = {}
-		context['object'] = self.get_object()
-		context['allcategories'] = Category.objects.all()
-		context['form'] = AddressForm(self.request.POST, None)
-		context['shipping_addresses'] = ShippingAddress.objects.filter(user=request.user)
-		return render(request, self.template_name, context)
+		if not self.get_object().is_empty:
+			context = {}
+			context['object'] = self.get_object()
+			context['allcategories'] = Category.objects.all()
+			context['form'] = AddressForm()
+			context['shipping_addresses'] = ShippingAddress.objects.filter(user=request.user)
+			return render(request, self.template_name, context)
+		else:
+			return HttpResponseRedirect('/')
 
 
 	def post(self, request, *args, **kwargs):
@@ -169,12 +171,13 @@ class CheckoutView(LoginRequiredMixin, SingleObjectMixin, View):
 		bag = self.get_object()
 		if 'user_address_selection' in request.POST:
 			address = ShippingAddress.objects.get(id=request.POST.get('address'))
-		
+			if address is None:
+				return HttpResponseRedirect(f"/checkout/{bag.id}")
 			if bag.order == None:
 				new_order = Order.objects.create(
 					order_number = bag.id,
 					customer = bag.user,
-					order_total = bag.total, 
+					order_total = bag.totagl, 
 					shipping_address = address
 				)
 				bag.order = new_order
@@ -189,23 +192,32 @@ class CheckoutView(LoginRequiredMixin, SingleObjectMixin, View):
 		if form.is_valid():	
 			form.instance.user = logged_user
 			form.save()
-		context = {}
-		context['object'] = self.get_object()
-		context['allcategories'] = Category.objects.all()
-		context['form'] = AddressForm(self.request.POST, None)
-
-		return render(request, self.template_name, context)
+			context = {}
+			context['object'] = bag
+			context['allcategories'] = Category.objects.all()
+			context['form'] = AddressForm()
+			return HttpResponseRedirect(f"/checkout/{bag.id}")
+		else:
+			context = {}
+			context['object'] = bag
+			context['allcategories'] = Category.objects.all()
+			context['form'] = form
+			context['shipping_addresses'] = ShippingAddress.objects.filter(user=request.user)
+			return render(request, self.template_name, context)
 
 @login_required
 def payment_view(request, pk):
 	order = get_object_or_404(Order, id=pk)
-	context = {}
-	context['client_secret'] = create_payment_intent(request, pk)
-	context['bag_id'] = order.bag.id
-	context['order'] = order
-	context['return_url'] = "%s%s" %(settings.BASE_URL, reverse_lazy('checkout_complete', kwargs={'pk':pk}))
-	context['public_stripe'] = settings.STRIPE_PUBLIC_KEY
-	return render(request, "p5_ecommerce_store/payment.html", context)
+	if not order.bag.is_empty:	
+		context = {}
+		context['client_secret'] = create_payment_intent(request, pk)
+		context['bag_id'] = order.bag.id
+		context['order'] = order
+		context['return_url'] = "%s%s" %(settings.BASE_URL, reverse_lazy('checkout_complete', kwargs={'pk':pk}))
+		context['public_stripe'] = settings.STRIPE_PUBLIC_KEY
+		return render(request, "p5_ecommerce_store/payment.html", context)
+	else:
+		return HttpResponseRedirect('/')
 
 def create_payment_intent(request, pk):
 	order = get_object_or_404(Order, id=pk)

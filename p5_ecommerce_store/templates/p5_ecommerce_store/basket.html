@@ -40,6 +40,12 @@ body{
       {% empty %}
       <tr><td colspan="5" class="text-center">There are no items in your bag</td></tr>
       {% endfor %}
+      {% if object.is_empty %}
+      <tr rowspan="2">
+        <td colspan="3">&nbsp;</td>
+        <td class="text-left"><a class="btn btn-md btn-secondary bg-dark gray-theme" href="{% url 'home' %}">Go Back</a></td>
+      </tr>
+      {% else %}
       <tr>
         <td>&nbsp;</td>
         <td colspan="2" class="text-left">Bag Total</td>
@@ -49,6 +55,7 @@ body{
         <td colspan="3">&nbsp;</td>
         <td class="text-left"><a class="btn btn-md btn-secondary bg-dark gray-theme" href="{% url 'checkout' object.id %}">Check Out</a></td>
       </tr>
+      {% endif %}
     </tbody>
   </table>
 </div>

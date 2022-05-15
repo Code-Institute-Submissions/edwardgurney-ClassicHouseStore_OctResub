@@ -326,9 +326,11 @@ There are many features that I would like to implement in future versions if I h
 
 3. I would like to implement the ability for admin users to select an item as out of stock, so that this takes the item off of the site (or notifies users that it is out of stock). Currently, admin users will have to notice when an item is out of stock and remove it manually. This could lead to dissapointed customers that order something that isn't in stock. 
 
-4. Developing on this further, I Would love to implement a system that can do this automatically, so admin users can add the amount they have in stock once, and then when a reord is purchased, it automatically reduces the amount in stock.
+4. Developing on this further, I would love to implement a system that can do this automatically, so admin users can add the amount they have in stock once, and then when a reord is purchased, it automatically reduces the amount in stock.
 
-5. Something noticably missing for me in this is account information for users. I would like them to be able to access their account information, and change and update their details as and when. I'd also like them to be able to view their past orders. 
+5. Something noticably missing for me in this is account information for users. I would like them to be able to access their account information, and change and update their details as and when. I'd also like them to be able to view their past orders.
+
+6. I would also like to add to the site 1 minute snippits of the music. This facility is already there in terms of the admin panel, becasue as you will see, I included it in my original products model (as it fomred part of my planning really early on in the design stage). However, logisitcally for this submission, obtaining the relevant 1 minute clips, recording them and then adding them to the product in the admin panel was time consuming, and I needed and wanted to get the submission done. However, this facility to do that is pretty much there already I think, so could be implemented rather easily in a future version. 
 
 
 ## **Testing**
