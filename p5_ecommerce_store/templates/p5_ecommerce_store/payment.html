@@ -10,16 +10,15 @@
 {% block content %}
 <div class="container">
     <main>
-      <div class="py-5 text-center">
-        <br>
-        <h2>Order Summary</h2>
+      <div class="text-center">
+        <h2>Payment Page</h2>
       </div>
 
       <div class="row g-5">
         <div class="col-md-5 col-lg-4 order-md-last">
           <h4 class="d-flex justify-content-between align-items-center mb-3">
             <span class="">Your cart</span>
-            <span class="badge rounded-pill">{{order.bag.bagitem_set.count}}</span>
+            <span class="badge rounded-pill">({{order.bag.bagitem_set.count}} item(s))</span>
           </h4>
           <ul class="list-group mb-3">
             {% for item in order.bag.bagitem_set.all %}
@@ -52,7 +51,7 @@
               <div id="payment-element">
               <!--Stripe.js injects the Payment Element-->            
               </div>
-              <button id="submit">
+              <button class="btn btn-secondary bg-dark gray-theme" id="submit">
                 <div class="spinner hidden" id="spinner"></div>
                 <span id="button-text">Pay now</span>
               </button>

@@ -42,7 +42,7 @@
   </head>
   
   <body>
-    <header style="margin-bottom: 50px;">
+    <header>
       
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <a class="navbar-brand" href="{% url 'home' %}">Classic House Vinyl Store</a>
@@ -116,7 +116,7 @@
     <form action="{% url 'newsletter' %}" method="post">{% csrf_token %}
       <p>Sign up for our newsletter</p>
       <input type="email" required class="form-control" name="email_address" id="email_address" placeholder="Email Address">
-      <button class="btn btn-primary my-2 my-sm-0" type="submit">SUBSCRIBE</button>
+      <button class="btn btn-secondary my-2 my-sm-0 bg-dark gray-theme" type="submit">SUBSCRIBE</button>
     </form>
     <p class="text-center text-muted">&copy; 2020–{% now "Y"%}</p>
   </footer>

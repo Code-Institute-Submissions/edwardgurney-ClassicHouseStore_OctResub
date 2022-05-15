@@ -178,7 +178,7 @@ class CheckoutView(LoginRequiredMixin, SingleObjectMixin, View):
 				new_order = Order.objects.create(
 					order_number = bag.id,
 					customer = bag.user,
-					order_total = bag.totagl, 
+					order_total = bag.total, 
 					shipping_address = address
 				)
 				bag.order = new_order

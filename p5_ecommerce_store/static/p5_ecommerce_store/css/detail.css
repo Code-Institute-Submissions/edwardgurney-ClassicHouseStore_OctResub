@@ -15,3 +15,13 @@
 .center {
   text-align: center;
 }
+
+.site__map {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.site__map a{
+  margin: 10px 0;
+} 

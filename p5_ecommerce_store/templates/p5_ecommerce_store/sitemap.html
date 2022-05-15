@@ -1,22 +1,23 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
-<link href="{% static 'p5_ecommerce_store/detail.css' %}" rel="stylesheet">
+
+<link href="{% static 'p5_ecommerce_store/css/detail.css' %}" rel="stylesheet">
+<div class="container py-5">
       <H2>SITEMAP</H2>
-          <div>
+          <div class="site__map">
             <a href="{% url 'home' %}">
-                <button class="w-100 btn btn-lg btn-primary center" type="button">Home</button>
+                <button class="w-100 btn btn-secondary bg-dark gray-theme" type="button">Home</button>
               </a>
-          </div>
-          <br>
               <a href="{% url 'login' %}">
-                <button class="w-100 btn btn-lg btn-primary" type="button">Login</button>
+                <button class="w-100 btn btn-secondary bg-dark gray-theme" type="button">Login</button>
               </a>
               <a href="{% url 'signup' %}">
-                <button class="w-100 btn btn-lg btn-primary" type="button">Signup</button>
+                <button class="w-100 btn btn-secondary bg-dark gray-theme" type="button">Signup</button>
               </a>
               <a href="{% url 'basket' %}">
-                <button class="w-100 btn btn-lg btn-primary" type="button">Basket</button>
+                <button class="w-100 btn btn-secondary bg-dark gray-theme" type="button">Basket</button>
               </a>
-          
+              </div>
+    </div>
 {% endblock %}
