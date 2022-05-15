@@ -1,5 +1,5 @@
 from django import forms
-from .models import ShippingAddress
+from .models import ShippingAddress, NewsLetterSubs
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model
 
@@ -21,3 +21,8 @@ class SignupForm(UserCreationForm):
     class Meta:
         model = User
         fields = ("username", "email", "password1", "password2")
+
+class NewsLetterForm(forms.ModelForm):
+    class Meta:
+        model = NewsLetterSubs
+        exclude = ("subscription_date",)

@@ -130,3 +130,9 @@ class Rating(models.Model):
     def __str__(self):
         return f'{self.product} rated {self.rating_number}'
 
+class NewsLetterSubs(models.Model):
+    subscription_date = models.DateTimeField(auto_now_add=True)
+    email_address = models.EmailField()
+    
+    def __str__(self):
+        return f"{self.email_address}"

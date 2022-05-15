@@ -4,7 +4,7 @@ from .models import (Product, Bag, BagItem, Category, ShippingAddress,
 					Rating, Order)
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponseRedirect
-from .forms import AddressForm, SignupForm
+from .forms import AddressForm, SignupForm, NewsLetterForm
 from django.views.generic.detail import SingleObjectMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.conf import settings
@@ -26,6 +26,7 @@ class StoreFrontView(generic.ListView):
 	def get_context_data(self, **kwargs):
 		context = super().get_context_data(**kwargs)
 		context['allcategories'] = Category.objects.all()
+		context['newsletter_form'] = NewsLetterForm()
 		return context
 
 
@@ -278,3 +279,12 @@ def search_view(request):
 
 class SiteMapView(TemplateView):
 	template_name = "p5_ecommerce_store/sitemap.html"
+
+def news_letter_subscription(request):
+	form = NewsLetterForm(request.POST)
+	if form.is_valid():
+		form.save()
+		messages.add_message(request, messages.SUCCESS, 'You successfully subscribed, thanks')
+	else:
+		messages.add_message(request, messages.WARNING, 'Sorry, an error occured')
+	return HttpResponseRedirect('/')

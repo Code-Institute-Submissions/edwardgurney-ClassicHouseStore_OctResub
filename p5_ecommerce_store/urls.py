@@ -2,7 +2,8 @@ from django.urls import path
 from .views import (StoreFrontView, ProductDetailView, BasketView,
                     CategoryView, CheckoutView, payment_view,
                     create_payment_intent, checkout_complete,
-                    rate_record, search_view, SiteMapView)
+                    rate_record, search_view, SiteMapView,
+                    news_letter_subscription)
 
 
 urlpatterns = [
@@ -19,5 +20,6 @@ urlpatterns = [
          name='checkout_complete'),
     path('rate-record/<int:pk>', rate_record, name='rate_record'),
     path('search/', search_view, name='search'),
-    path('sitemap/', SiteMapView.as_view(), name='sitemap')
+    path('sitemap/', SiteMapView.as_view(), name='sitemap'),
+    path('newsletter/', news_letter_subscription, name='newsletter')
 ]

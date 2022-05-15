@@ -541,7 +541,11 @@ There were many bugs throughout the development process that were discovered and
 
 * If users proceeded to checkout, after amending the quantity in their basket to 0, would still let them proceed to payment. Whilst the site warns users that their bag is empty, clicking on the 'checkout' button would allow them to proceed to payment and if the user entered address details and clicked 'pay now' froze the screen and would not let them proceed. 
 
-* Similarly, if the user clicked 'make payment' without selecting an address I got an DoesNotExist error. I managed to remember to take a screen grab of this to provide as an example. 
+This was fixed by hiding the checkout button when the basket was empty by adding an if statement in the basket.html file to display the checkout buttn only when there were items in the basket. 
+
+* Similarly, if the user clicked 'make payment' without selecting an address I got an DoesNotExist error. this was fixed by making the address on the form a required field, so it stopped the user from proceeding. I managed to remember to take a screen grab of this to provide as an example. 
+
+* Adding a new user and a new address, when the user saved the address it wasn't displaying in the address corner and if the user kept resubitting the same form it would save and duplictae the addresses. This solved by clearing the form upon submission and displaying the saved address on submission. 
 
 <img src="media/images/does_not_exist.png">
 

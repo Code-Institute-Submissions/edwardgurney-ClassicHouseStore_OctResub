@@ -1,11 +1,8 @@
-
+{% extends 'base.html' %}
+{% block content %}
 {% load static %}
 <link href="{% static 'p5_ecommerce_store/detail.css' %}" rel="stylesheet">
-
-<header>
-      
-      <div class="collapse navbar-collapse center" id="navbarCollapse">
-        <ul class="navbar-nav mr-auto center">
+      <H2>SITEMAP</H2>
           <div>
             <a href="{% url 'home' %}">
                 <button class="w-100 btn btn-lg btn-primary center" type="button">Home</button>
@@ -22,3 +19,4 @@
                 <button class="w-100 btn btn-lg btn-primary" type="button">Basket</button>
               </a>
           
+{% endblock %}
