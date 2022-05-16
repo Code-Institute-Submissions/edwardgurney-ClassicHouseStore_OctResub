@@ -15,7 +15,7 @@ class Category(models.Model):
     name = models.CharField(max_length=250)
 
     def __str__(self):
-        return self.name
+        return f"{self.name}"
 
 
 class Product(models.Model):
@@ -34,7 +34,7 @@ class Product(models.Model):
     preview_audio_link = models.URLField(blank=True, null=True)
 
     def __str__(self):
-        return self.title
+        return f"{self.title}"
 
     @property
     def average_rating(self):
@@ -44,7 +44,7 @@ class Product(models.Model):
                 total_rating = total_rating + rating.rating_number
             return total_rating / Rating.objects.filter(product=self).count()
         except Exception:
-            return "There are no ratings yet, be the first to rate this record!!"
+            return "There are no ratings yet, be the first to rate this record"
 
 
 class Order(models.Model):
@@ -58,7 +58,7 @@ class Order(models.Model):
         null=True, blank=True)
 
     def __str__(self):
-        return self.order_number
+        return f"{self.order_number}"
 
 
 class BagItem(models.Model):
@@ -88,7 +88,7 @@ class Bag(models.Model):
     state = models.CharField(choices=STATE, max_length=15, default='open')
     user = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True,
                              null=True)
-    
+
     @property
     def is_empty(self):
         if self.bagitem_set.all().count() > 0:
@@ -130,9 +130,10 @@ class Rating(models.Model):
     def __str__(self):
         return f'{self.product} rated {self.rating_number}'
 
+
 class NewsLetterSubs(models.Model):
     subscription_date = models.DateTimeField(auto_now_add=True)
     email_address = models.EmailField()
-    
+
     def __str__(self):
         return f"{self.email_address}"

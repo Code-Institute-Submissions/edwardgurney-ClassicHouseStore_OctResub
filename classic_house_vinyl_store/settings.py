@@ -109,7 +109,7 @@ LOGIN_REDIRECT_URL = '/'
 
 LOGOUT_REDIRECT_URL = '/'
 
-#EMAIL Credentials
+# EMAIL Credentials
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_KEY")
 EMAIL_HOST_USER = 'edwardgurney1979@gmail.com'
 EMAIL_HOST = 'smtp.gmail.com'
@@ -176,7 +176,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-#MEDIA_URL = DEFAULT_FILE_STORAGE
+# MEDIA_URL = DEFAULT_FILE_STORAGE
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 

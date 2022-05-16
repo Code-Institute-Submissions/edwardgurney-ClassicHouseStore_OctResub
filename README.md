@@ -496,20 +496,20 @@ In the above image you can see how as an admin they can delete a product if the 
 #### **Django**
  * Django Summernote - Used to provide admins with an easier way to provide content for the main site, in the back end. This allows admins to improve the layout. 
  * Django all-auth
- * Django Crispy forms
- * Django Messages
- * Pillow - 
+ * Django Crispy forms - Was used to display pre-designed forms and inject some CSS into the template. 
+ * Django Messages - This was used to display messages to users such as notifying the user of sucsefful form submission. 
  * Gunicorn 
  * Cloudinary - Used to store images externally to assist with Heroku issues of wiping content. 
  * Postgres - Databse management system used. 
  * Bootstrap
  * Font Awesome
+ * Summernote - Was used for the admin panel.
 
 ### **Technology and Validation**
 
  
 #### **Stripe**
-[Stripe](https://stripe.com/gb) was used for all payment activity on the site. An account was created and the API used to allow communication between Stripe servers and customers payment details once submitted to be processed. 
+[Stripe](https://stripe.com/gb) was used for all payment activity on the site. An account was created and the API used to allow communication between Stripe servers and the application to ensure secure customer payment and customers payment details once submitted to be processed. It also helps provide confidence to the customer that their details are safe. 
 
 <img src="media/images/sucessful_payments.png">
 Above is an image of successful payments going through on the site. This is accessed on the payments tab of the dashboard.
@@ -602,6 +602,8 @@ To create a clone:
 You will need to install all of the dependencies from the requirements.txt file into your workspace for it to work. 
 
 #### Local Deployment
+
+* Copy the content of env.py.example into your env.py file and update with your information. (The env.py file is git ignored so secret info is not pushed in your commit).
 
 ### Database
 1. Add DATABASE_URL to settings.py:

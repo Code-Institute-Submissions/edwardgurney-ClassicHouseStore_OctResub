@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import (Product, Category, Bag, BagItem, ShippingAddress,
-                    Rating, NewsLetterSubs)
+                     Rating, NewsLetterSubs)
 from django_summernote.admin import SummernoteModelAdmin
 
 

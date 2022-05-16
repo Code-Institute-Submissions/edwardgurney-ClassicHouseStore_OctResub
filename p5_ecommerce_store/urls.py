@@ -1,14 +1,12 @@
 from django.urls import path
+from django.views.generic.base import TemplateView
 from .views import (StoreFrontView, ProductDetailView, BasketView,
                     CategoryView, CheckoutView, payment_view,
                     create_payment_intent, checkout_complete,
                     rate_record, search_view, SiteMapView,
                     news_letter_subscription)
-from django.views.generic.base import TemplateView
-
 
 urlpatterns = [
-
     path('', StoreFrontView.as_view(), name='home'),
     path('product_detail/<int:pk>', ProductDetailView.as_view(),
          name='product_detail'),
