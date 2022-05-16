@@ -4,9 +4,11 @@ from .views import (StoreFrontView, ProductDetailView, BasketView,
                     create_payment_intent, checkout_complete,
                     rate_record, search_view, SiteMapView,
                     news_letter_subscription)
+from django.views.generic.base import TemplateView
 
 
 urlpatterns = [
+
     path('', StoreFrontView.as_view(), name='home'),
     path('product_detail/<int:pk>', ProductDetailView.as_view(),
          name='product_detail'),
@@ -21,5 +23,7 @@ urlpatterns = [
     path('rate-record/<int:pk>', rate_record, name='rate_record'),
     path('search/', search_view, name='search'),
     path('sitemap/', SiteMapView.as_view(), name='sitemap'),
-    path('newsletter/', news_letter_subscription, name='newsletter')
+    path('newsletter/', news_letter_subscription, name='newsletter'),
+    path('robots.txt', TemplateView.as_view(
+         template_name='robot.txt', content_type='text/plain'))
 ]

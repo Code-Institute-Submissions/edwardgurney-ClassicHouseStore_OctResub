@@ -1,0 +1,4 @@
+User-Agent: *
+Disallow: /create-payment-intent/
+Disallow: /checkout/
+Disallow: /payment/
