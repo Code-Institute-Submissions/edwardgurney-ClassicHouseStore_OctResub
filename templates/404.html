@@ -1,10 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load static %}
 
+<link href="{% static 'p5_ecommerce_store/css/detail.css' %}" rel="stylesheet">
+<div class="container py-5">
+  <br>
 <H1><bold>Sorry, this page does not exist</bold></H1>
 
 <H4>If you have any questions, please contact us</H4>
 <a href="{% url 'home' %}">
-    <button class="w-100 btn btn-lg btn-primary" type="button">Clck here to continue shopping</button>
+    <button class="w-100 btn btn-lg btn-secondary btn-theme bg-dark" type="button">Clck here to continue shopping</button>
   </a>
+</div>
 {% endblock %}

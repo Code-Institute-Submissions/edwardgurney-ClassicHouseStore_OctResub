@@ -472,6 +472,13 @@ In the above image you can see how as an admin they can delete a product if the 
 <br>
 <br>
 
+### **Performance Testing**
+To test the perfromane of the site, I used Google Lighthouse in Chrome Dev Tools. Below are some screenshots of how each page performed:
+
+index.html
+
+With an overall performance of 97%, this is good, but there is room for some slight improvement in the Accessibility section becasue it scored scored 89%, which is a little lower than I would like. This is because of the lack of alt tags for the images. I added the images via a for loop and through cloudinary, and so will review how to add an alt attribute when images are being rendered like this. I did try, but it creatd a surver error. This is something to review in a future version.
+
 ### **Additional Testing**
 * The site has been used by friends and family to try and find any errors. There are no known errors in this version that have been found that haven't been fixed during the development process. 
 * Throughout the process the developer has navigated through the site on a continual basis and no issues are currently noted. They have been fixed as the development has progressed and the majority of these I have documented in the bugs section of this file. 
