@@ -625,7 +625,9 @@ I viewed a number of sites and video tutorials. I have listed these below.
 
 * All of the images used were photographs of items the site developer has purchased and owns. These were used as examples and not for commercial purposes. 
 
-* As mentioned [bootsrap](https://getbootstrap.com/) was used for the main structure of the site, using templates and componenents and chagning them to suit the site layout. 
+* As mentioned [bootsrap](https://getbootstrap.com/) was used for the main structure of the site, using templates and componenents and chagning them to suit the site layout.
+
+* I obtained what I need to do for my robots.txt file from [here](https://adamj.eu/tech/2020/02/10/robots-txt/)
 
 * [MyColor](https://mycolor.space/) was used to get an idea of colors that would complement each other. This was a rather basic look, considering the site is only a couple of colors, but it was still a worthwhile exercise.
 
