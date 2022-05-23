@@ -25,6 +25,7 @@ class StoreFrontView(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        print('I got here')
         context['allcategories'] = Category.objects.all()
         context['newsletter_form'] = NewsLetterForm()
         return context
