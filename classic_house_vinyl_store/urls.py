@@ -26,7 +26,7 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('signup/', signup_view, name='signup'),
     path('summernote/', include('django_summernote.urls')),
-    path('accounts/', include('allauth.urls')),
+    # path('accounts/', include('allauth.urls')),
     path('', include('p5_ecommerce_store.urls')),
     path('robots.txt', TemplateView.as_view(
         template_name='robots.txt', content_type='text/plain')),
