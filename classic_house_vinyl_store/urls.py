@@ -14,8 +14,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
 from django.contrib.auth import views as auth_views
+from django.urls import path, include
+from django.views.generic.base import TemplateView
 from p5_ecommerce_store.views import signup_view
 
 
@@ -27,5 +28,7 @@ urlpatterns = [
     path('summernote/', include('django_summernote.urls')),
     path('accounts/', include('allauth.urls')),
     path('', include('p5_ecommerce_store.urls')),
+    path('robots.txt', TemplateView.as_view(
+        template_name='robots.txt', content_type='text/plain')),
 
 ]

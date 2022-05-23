@@ -168,44 +168,44 @@ class CheckoutView(LoginRequiredMixin, SingleObjectMixin, View):
             return HttpResponseRedirect('/')
 
 
-def post(self, request, *args, **kwargs):
-    logged_user = request.user
-    bag = self.get_object()
-    if 'user_address_selection' in request.POST:
-        address = ShippingAddress.objects.get(id=request.POST.get('address'))
-        if address is None:
+    def post(self, request, *args, **kwargs):
+        logged_user = request.user
+        bag = self.get_object()
+        if 'user_address_selection' in request.POST:
+            address = ShippingAddress.objects.get(id=request.POST.get('address'))
+            if address is None:
+                return HttpResponseRedirect(f"/checkout/{bag.id}")
+            if bag.order == None:
+                new_order = Order.objects.create(
+                order_number = bag.id,
+                customer = bag.user,
+                order_total = bag.total,
+                shipping_address = address
+                )
+                bag.order = new_order
+                bag.save()
+            else:
+                order = bag.order
+                order.order_total = bag.total
+                order.shipping_address = address
+                order.save()
+                return HttpResponseRedirect(f"/payment/{bag.order.id}")
+        form = AddressForm(request.POST)
+        if form.is_valid():
+            form.instance.user = logged_user
+            form.save()
+            context = {}
+            context['object'] = bag
+            context['allcategories'] = Category.objects.all()
+            context['form'] = AddressForm()
             return HttpResponseRedirect(f"/checkout/{bag.id}")
-        if bag.order == None:
-            new_order = Order.objects.create(
-            order_number = bag.id,
-            customer = bag.user,
-            order_total = bag.total,
-            shipping_address = address
-            )
-            bag.order = new_order
-            bag.save()
         else:
-            order = bag.order
-            order.order_total = bag.total
-            order.shipping_address = address
-            order.save()
-            return HttpResponseRedirect(f"/payment/{bag.order.id}")
-    form = AddressForm(request.POST)
-    if form.is_valid():
-        form.instance.user = logged_user
-        form.save()
-        context = {}
-        context['object'] = bag
-        context['allcategories'] = Category.objects.all()
-        context['form'] = AddressForm()
-        return HttpResponseRedirect(f"/checkout/{bag.id}")
-    else:
-        context = {}
-        context['object'] = bag
-        context['allcategories'] = Category.objects.all()
-        context['form'] = form
-        context['shipping_addresses'] = ShippingAddress.objects.filter(user=request.user)
-        return render(request, self.template_name, context)
+            context = {}
+            context['object'] = bag
+            context['allcategories'] = Category.objects.all()
+            context['form'] = form
+            context['shipping_addresses'] = ShippingAddress.objects.filter(user=request.user)
+            return render(request, self.template_name, context)
 
 
 @login_required

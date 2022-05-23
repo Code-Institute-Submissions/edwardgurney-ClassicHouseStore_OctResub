@@ -1,5 +1,4 @@
 from django.urls import path
-from django.views.generic.base import TemplateView
 from .views import (StoreFrontView, ProductDetailView, BasketView,
                     CategoryView, CheckoutView, payment_view,
                     create_payment_intent, checkout_complete,
@@ -22,6 +21,4 @@ urlpatterns = [
     path('search/', search_view, name='search'),
     path('sitemap/', SiteMapView.as_view(), name='sitemap'),
     path('newsletter/', news_letter_subscription, name='newsletter'),
-    path('robots.txt', TemplateView.as_view(
-         template_name='robot.txt', content_type='text/plain'))
 ]

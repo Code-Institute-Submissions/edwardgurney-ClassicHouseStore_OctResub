@@ -478,16 +478,18 @@ To test the perfromane of the site, I used Google Lighthouse in Chrome Dev Tools
 index.html
 ADD IMAGES OF LIGHTHOUSE PERFORMANCE REPORT
 With an overall performance of 97%, this is good, but there is room for some slight improvement in the Accessibility section becasue it scored scored 89%, which is a little lower than I would like. This is because of the lack of alt tags for the images. I added the images via a for loop and through cloudinary, and so will review how to add an alt attribute when images are being rendered like this. I did try, but it creatd a surver error. This is something to review in a future version.
+The file was scoring low on its SEO scoring. One of the reasons is becasue my meta tag title of keywords wasn't being recognised, so after following [this](https://web.dev/meta-description/?utm_source=lighthouse&utm_medium=devtools) that lighhouse provided, it showed me that using 'description' would improve the score, which it did (by 9%). 
 
 ### **Additional Testing**
 * The site has been used by friends and family to try and find any errors. There are no known errors in this version that have been found that haven't been fixed during the development process. 
 * Throughout the process the developer has navigated through the site on a continual basis and no issues are currently noted. They have been fixed as the development has progressed and the majority of these I have documented in the bugs section of this file. 
 * Google Chrome Developer tools has been used throughout to identify styling issues that impact upon display and UX. Dveloper tools was used to find the errors and amend.
-* All links were tested multiple times during the development process and after deployment
+* All links were tested multiple times during the development process and after deployment.
 
 ### **Compatability Testing**
 * The site has been tested on all mainstream browsers, Chrome, Firefox, Safari and Edge and no issues seem to be present. 
 * The site has been tested on multiple screen sizes, not only in developer tools but also on physical handsets, includeing the iPhone 10, XR, 12SE and the GalaxyS22 and A52S. No problems were noted, and this is largely down to Bootstrap making the process a lot less painful.
+* I used responsive facility in Chrome Developer tools to test on various screen sizes. This allows you to check on a multitude of screens ffrom ipdas and iphones of various sizes, to Samsungs and Surface tablets.
 
 ## **Languages & Technology Used**
 
@@ -504,10 +506,10 @@ With an overall performance of 97%, this is good, but there is room for some sli
  * Django Summernote - Used to provide admins with an easier way to provide content for the main site, in the back end. This allows admins to improve the layout. 
  * Django all-auth
  * Django Crispy forms - Was used to display pre-designed forms and inject some CSS into the template. 
- * Django Messages - This was used to display messages to users such as notifying the user of sucsefful form submission. 
+ * Django Messages - This was used to display messages to users such as notifying the user of sucessful form submission. 
  * Gunicorn 
  * Cloudinary - Used to store images externally to assist with Heroku issues of wiping content. 
- * Postgres - Databse management system used. 
+ * Postgres - Database management system used. 
  * Bootstrap
  * Font Awesome
  * Summernote - Was used for the admin panel.
@@ -516,7 +518,7 @@ With an overall performance of 97%, this is good, but there is room for some sli
 
  
 #### **Stripe**
-[Stripe](https://stripe.com/gb) was used for all payment activity on the site. An account was created and the API used to allow communication between Stripe servers and the application to ensure secure customer payment and customers payment details once submitted to be processed. It also helps provide confidence to the customer that their details are safe. 
+[Stripe](https://stripe.com/gb) was used for all payment activity on the site. An account was created and the API used to allow communication between Stripe servers and the application to ensure secure customer payment and customers payment details once submitted to be processed. It also helps provide confidence to the customer that their details are safe, which satisfied one og my user stories. 
 
 <img src="media/images/sucessful_payments.png">
 Above is an image of successful payments going through on the site. This is accessed on the payments tab of the dashboard.
@@ -527,7 +529,7 @@ Above is an image of successful payments going through on the site. This is acce
 
 [PEP8](http://pep8online.com/) was used to check for any errors. All of the code passes with no errors or warning present due to bad code. Example screen shots of some of the code are below:
 
-This screen shows the top of the file and the code being accepted on Pep8 for Python code. All python code was tested using this process. I removed all genuine errors and there were a few 'line too long' warnings. Originally I left some of these in becasue they were long variable names rather than bad code. I was also of the opinion that, whilst I am aware of the 'line too long' item, it applied to a time when monitors were smaller and a max line limit of 80 was the accepted convention. Nowadays with bigger screens this is no longer the case, and longer lines are still readable/accepted. However, after discussion with my mentor I decided to break these lines down so that they fit with convention, even if I don't think it is aboslutely necessary all of the time.
+This screen shows the top of the file and the code being accepted on Pep8 for Python code. All python code was tested using this process. I removed all genuine errors and there were a few 'line too long' warnings. Whilst I removed the majority of these and broke them down into multiple lines, I left some in becasue they were long variable names rather than bad code. I was also of the opinion that, whilst I am aware of the 'line too long' item, it applied to a time when monitors were smaller and a max line limit of 80 was the accepted convention. Nowadays with bigger screens this is no longer the case, and longer lines are still readable/accepted. I found that breakign some of these down to the convention of 80 actually made it more untidy in some cases. 
 
 <br>
 
@@ -546,17 +548,17 @@ The [WC3](https://validator.w3.org/nu/) validator was used to check for any erro
 
 There were many bugs throughout the development process that were discovered and fixed. I have provided details on some of them below. Currently I don't believe that there are any bugs in this current version. 
 
-* If users proceeded to checkout, after amending the quantity in their basket to 0, would still let them proceed to payment. Whilst the site warns users that their bag is empty, clicking on the 'checkout' button would allow them to proceed to payment and if the user entered address details and clicked 'pay now' froze the screen and would not let them proceed. 
+* If users proceeded to checkout, after amending the quantity in their basket to 0, it would still let them proceed to payment. Whilst the site warns users that their bag is empty, clicking on the 'checkout' button would allow them to proceed to payment and if the user entered address details and clicked 'pay now' froze the screen and would not let them proceed. 
 
 This was fixed by hiding the checkout button when the basket was empty by adding an if statement in the basket.html file to display the checkout buttn only when there were items in the basket. 
 
 * Similarly, if the user clicked 'make payment' without selecting an address I got an DoesNotExist error. this was fixed by making the address on the form a required field, so it stopped the user from proceeding. I managed to remember to take a screen grab of this to provide as an example. 
 
-* Adding a new user and a new address, when the user saved the address it wasn't displaying in the address corner and if the user kept resubitting the same form it would save and duplictae the addresses. This solved by clearing the form upon submission and displaying the saved address on submission. 
-
 <img src="media/images/does_not_exist.png">
 
-* Significant CSS problems during devlopment meant that no styling was working as it should. To prevent this from happening I inputted CSS in style tages during development, with the intention of fixing later. You may have noticed this in some of the screen shots I have provided, that some of the CSS isn't working. 
+* When adding a new user and a new address, when the user saved the address it wasn't displaying in the addresses section, and if the user kept resubitting the same form it would save and duplictae the addresses. This bug was solved by clearing the form upon submission and displaying the saved address on submission. 
+
+* Significant CSS problems during devlopment meant that no styling was working as it should. To prevent this from happening I inputted CSS in style tages during development, with the intention of fixing later. You may have noticed this in some of the screen shots I have provided, that some of the CSS isn't working. It seems that there were a few issues as to why this wasn't working, becasue some actions solved some rendering but not others. In the main, during development I had managed to get my css files in a bit of a muddle, and thus renaming and moving them around so that they were in the correct folders solved al ot of the problems. 
 
 * When updating items in basket and selecting update it was resetting to the previously selected quantity. In the terminal, using print() it was sending that quantity but for some reason wasn’t showing this on the site. 
 
@@ -564,7 +566,7 @@ This was fixed by hiding the checkout button when the basket was empty by adding
 
 * Terminal was returning an error of 'Invalid Integer 18.99. 
 
-* When I tried to ad to the model, gitpod rejected it saying “You are trying to add a non-nullable field 'product_ID' to product without a default; we can't do that (the database needs something to populate existing rows).
+* When I tried to add to the model, gitpod rejected it saying “You are trying to add a non-nullable field 'product_ID' to product without a default; we can't do that (the database needs something to populate existing rows).
 Please select a fix:
  1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
  2) Quit, and let me add a default in models.py”
@@ -576,14 +578,14 @@ Despite the above, the product_id was not showing up in the admin panel, even af
 
 * Images were not rendering on storefront, despite them being uploaded in the correct way via the admin panel and seemingly cloudinary being installed correctly. 
 
-* Font awesome was not rendering requested fonts despite using same process used many times before. 
+* Font awesome was not rendering requested fonts despite using same process used many times before. this was a very easy fix in the end, even though for some reason it took me a while to see it, I simply had forgotten to add some required code to the i tags.
 
 * E-mails weren't being received for the sign up process, this was because the tempalte was not being rendered and I found the solution on stack overflow to use .render() to render the template:
 https://stackoverflow.com/questions/18055029/python-django-emailmultialternatives-template-object-has-no-attribute-encod
 
-* Gitpod wasn’t allowing ports to open which was causing problems with allowing API’s to work. This meant I could not check (for security reasons) to see if e-mail and payment Stripe was working. 
-Ports were open on Heroku so I was using Heroku to check this. I used Django messages to display errors because the terminal was accessible. I was testing on the actual site and unable to in development because Gitpod is what I was using for development. This meant a longer process to push every time I wanted to test, but I wasn’t sure what else to do. 
-This has made apparent to me that VS Code on my laptop will be my future development ‘go to’, rather than online using Gitpod. This will allow me to test more conveniently. I’m not sure for the future if this means you will be able to test API’s on gitpod or not, but for the duration of this project I had to do it through the actual site and deploy to Heroku constantly. 
+* Gitpod wasn’t allowing ports to open which was causing problems with allowing API’s to work. This meant I could not check (for security reasons) to see if e-mail and payments via Stripe was working. 
+Ports were open on Heroku so I was using Heroku to check this. I used Django messages to display errors because the terminal was accessible. I was testing on the actual site rather than in development because Gitpod is what I was using for development. This meant a longer process to push every time I wanted to test, but I wasn’t sure what else to do. 
+This has made apparent to me that VS Code on my laptop will be my future development ‘go to’, rather than online using Gitpod. This, I hope, will allow me to test more conveniently. I’m not sure for the future if this means you will be able to test API’s on gitpod or not, but for the duration of this project I had to do it through the actual site and deploy to Heroku constantly. 
 
 
 
@@ -641,7 +643,7 @@ I viewed a number of sites and video tutorials. I have listed these below.
 ## **Project Reflection**
 Overall this has been incredibly tough compared to the other projects but I am relatively happy with how it has gone. There are a lot of improvements that I would like to make to it, but time constraints and other commitments for a project of this size have proven dificult for me to implement what I would like. I am happy with the code and that the foundations of a good working site are in place. It has been a long 14 months on the course, with little respite, and so I am just happy to get this project away and have a couple of months to rest and reflect, and then pick up some fun projects. Creative design may not be my strong point, and I believe this is evident in this submission, but I have learned that this is an area to improve upon and to really assess similar sites in the future to get some ideas, I also believe (and hope) that in the real world, working in dev teams, that there will be assistance and specialists on hand for these areas. The learning experience of creating a full e-commerce site has been massive, and whilst I knew this project was large, I'm glad I didn't know how much work was needed at the start, as it may have been overwhelming for me. 
 
-I would have loved to have completed this course as a full time student, like a lot of my colleagues are able to. Working full time and being a father to two children under 3 has meant that the amount of time that I have been abe to spend on it is significantly lower, yet I am still proud of what I have been able to do. When I look at the presentation of other submissions, it can be disheartening becasue I know that if I was able to put 40 hours a week into the course, and still get my weekends off (or just have no children to look after) I would have been able to maintain some more merit grades to add to the ones I have got, and maybe even a distinction or two. My mentor Chris Quin, who has been amazing to me, has made me see that the race is just against myself and nobody else. However, I work in the week and then my weekends are taken for the course, which has led to very little time off over the last year, which has been a struggle and my mental health has suffered and my marraige has been under additional strain, my wife has been amazing to support me though this. Adding onto this my father having a heart attack and my 3 month old son being admitted to hospital just in the last few weeks has added to the strain. I think that CI should not be advertising this course as 12-15 hours per week, becasue for people with no coding background, it is certainly not. It is 20-25 hours just to keep up, and when you are working 40+ hours a week in full-time work, this is very very hard to do. 
+I would have loved to have completed this course as a full time student, like a lot of my colleagues are able to. Working full time and being a father to two children under 3 has meant that the amount of time that I have been abe to spend on it is significantly lower, yet I am still proud of what I have been able to do. When I look at the presentation of other submissions, it can be disheartening becasue I know that if I was able to put 40 hours a week into the course, and still get my weekends off (or just have no children to look after) I would have been able to maintain some more merit grades to add to the ones I have got, and maybe even a distinction or two. My mentor Chris Quin, who has been amazing to me, has made me see that the race is just against myself and nobody else. However, I work in the week and then my weekends are taken for the course, which has led to very little time off over the last year, which has been a struggle and my mental health has suffered and my marraige has been under additional strain, my wife has been amazing to support me though this. Adding onto this my father having a heart attack and my 3 month old son being admitted to hospital just in the last few weeks has added to the strain during this final leg of the course. I think that CI should not be advertising this course as 12-15 hours per week, becasue for people with no coding background, it is certainly not. It is 20-25 hours just to keep up, and when you are working 40+ hours a week in full-time work, this is very very hard to do. 
 
 Despite all of this, the past 12-14 months I have been on a journey, and I have surprised myself of what I have been able to do, I never thought I would be able to do it. Not only with the coding, but I have learnt how to approach things differently in life and feel I have obtained a new life skill. I will continue to practice my coding, after a well earned break, and whether I pursue a career in it or not, I'm happy that I will at least be able to help my two children when they start to do this at school. If I hadn't have done this course, I'd have had absolutely no idea how to help them.
 

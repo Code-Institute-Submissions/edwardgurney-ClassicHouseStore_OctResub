@@ -1,4 +1,7 @@
-User-agent: *
+User-Agent: Googlebot
+
+Allow: /
+Allow: /search/
 Disallow: /create-payment-intent/
 Disallow: /checkout/
 Disallow: /payment/
