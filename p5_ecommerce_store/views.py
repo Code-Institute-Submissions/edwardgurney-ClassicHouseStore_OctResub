@@ -1,21 +1,21 @@
+from django.conf import settings
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.mail import EmailMessage
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
+from django.template.loader import get_template
+from django.urls import reverse_lazy
 from django.views import generic, View
+from django.views.generic.base import TemplateView
+from django.views.generic.detail import SingleObjectMixin
+import stripe
+from .forms import AddressForm, SignupForm, NewsLetterForm
 from .models import (Product, Bag, BagItem, Category, ShippingAddress,
                      Rating, Order)
-from django.contrib.auth.forms import UserCreationForm
-from django.http import HttpResponseRedirect
-from .forms import AddressForm, SignupForm, NewsLetterForm
-from django.views.generic.detail import SingleObjectMixin
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.conf import settings
-from django.contrib.auth.decorators import login_required
-import stripe
-from django.http import JsonResponse
-from django.urls import reverse_lazy
-from django.core.mail import EmailMessage
-from django.template.loader import render_to_string, get_template
-from django.contrib import messages
-from django.views.generic.base import TemplateView
+
+
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
@@ -38,7 +38,8 @@ class CategoryView(generic.DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['allcategories'] = Category.objects.all()
-        context['object_list'] = Product.objects.filter(category=self.get_object())
+        context['object_list'] = Product.objects.filter(
+            category=self.get_object())
         return context
 
 
@@ -52,7 +53,8 @@ def mergebags(queryset):
     for bag in queryset[1:]:
         for item in bag.bagitem_set.all():
             if current_bag.bagitem_set.filter(product=item.product).exists():
-                current_bag_item = current_bag.bagitem_set.filter(product=item.product)[0]
+                current_bag_item = current_bag.bagitem_set.filter(
+                    product=item.product)[0]
                 current_bag_item.quantity += item.quantity
             else:
                 item.bag = current_bag
@@ -72,14 +74,15 @@ class BasketView(View):
         if product_id:
             current_product = get_object_or_404(Product, id=product_id)
             if user_quantity > 0:
-                current_bag_item, created = BagItem.objects.get_or_create(bag=current_bag,
-                                            product=current_product)
+                current_bag_item, created = BagItem.objects.get_or_create(
+                    bag=current_bag, product=current_product)
                 current_bag_item.quantity = user_quantity
                 current_bag_item.save()
                 current_bag.save()
             else:
                 try:
-                    bag_item = BagItem.objects.get(bag=current_bag,  product=current_product)
+                    bag_item = BagItem.objects.get(
+                        bag=current_bag, product=current_product)
                     bag_item.delete()
                     current_bag.save()
                 except BagItem.DoesNotExist:
@@ -94,7 +97,8 @@ class BasketView(View):
         if old_bag_id is None:
             if self.request.user.is_authenticated:
                 try:
-                    userbag = Bag.objects.filter(user=self.request.user, state='open')
+                    userbag = Bag.objects.filter(
+                        user=self.request.user, state='open')
                     if userbag.count() > 1:
                         mergebags(userbag)
                     bag = userbag[0]
@@ -122,11 +126,13 @@ class BasketView(View):
 
 
 def send_user_email(subject, message, recipient):
-    send_mail = EmailMessage(subject, message, to=[recipient], from_email=settings.EMAIL_HOST_USER)
+    send_mail = EmailMessage(
+        subject, message, to=[recipient],
+        from_email=settings.EMAIL_HOST_USER)
     send_mail.content_subtype = 'html'
     try:
         send_mail.send()
-    except Exception as e:
+    except Exception:
         pass
 
 
@@ -136,7 +142,8 @@ def signup_view(request):
         form = SignupForm(request.POST)
         if form.is_valid():
             form.save()
-            message = get_template('p5_ecommerce_store/signup_confirmation.html').render()
+            message = get_template(
+                'p5_ecommerce_store/signup_confirmation.html').render()
             subject = "Thankyou for signing up"
             recipient = form.instance.email
 
@@ -163,25 +170,26 @@ class CheckoutView(LoginRequiredMixin, SingleObjectMixin, View):
             context['object'] = self.get_object()
             context['allcategories'] = Category.objects.all()
             context['form'] = AddressForm()
-            context['shipping_addresses'] = ShippingAddress.objects.filter(user=request.user)
+            context['shipping_addresses'] = ShippingAddress.objects.filter(
+                user=request.user)
             return render(request, self.template_name, context)
         else:
             return HttpResponseRedirect('/')
-
 
     def post(self, request, *args, **kwargs):
         logged_user = request.user
         bag = self.get_object()
         if 'user_address_selection' in request.POST:
-            address = ShippingAddress.objects.get(id=request.POST.get('address'))
+            address = ShippingAddress.objects.get(
+                id=request.POST.get('address'))
             if address is None:
                 return HttpResponseRedirect(f"/checkout/{bag.id}")
-            if bag.order == None:
+            if bag.order is None:
                 new_order = Order.objects.create(
-                order_number = bag.id,
-                customer = bag.user,
-                order_total = bag.total,
-                shipping_address = address
+                    order_number=bag.id,
+                    customer=bag.user,
+                    order_total=bag.total,
+                    shipping_address=address
                 )
                 bag.order = new_order
                 bag.save()
@@ -205,7 +213,8 @@ class CheckoutView(LoginRequiredMixin, SingleObjectMixin, View):
             context['object'] = bag
             context['allcategories'] = Category.objects.all()
             context['form'] = form
-            context['shipping_addresses'] = ShippingAddress.objects.filter(user=request.user)
+            context['shipping_addresses'] = ShippingAddress.objects.filter(
+                user=request.user)
             return render(request, self.template_name, context)
 
 
@@ -217,7 +226,9 @@ def payment_view(request, pk):
         context['client_secret'] = create_payment_intent(request, pk)
         context['bag_id'] = order.bag.id
         context['order'] = order
-        context['return_url'] = "%s%s" % (settings.BASE_URL, reverse_lazy('checkout_complete', kwargs={'pk':pk}))
+        context['return_url'] = "%s%s" % (
+            settings.BASE_URL,
+            reverse_lazy('checkout_complete', kwargs={'pk': pk}))
         context['public_stripe'] = settings.STRIPE_PUBLIC_KEY
         return render(request, "p5_ecommerce_store/payment.html", context)
     else:
@@ -249,12 +260,14 @@ def checkout_complete(request, pk):
         del request.session['bag_id']
     except Exception:
         pass
-    message = get_template('p5_ecommerce_store/order_confirmation_email.html').render({'order':order})
+    message = get_template(
+        'p5_ecommerce_store/order_confirmation_email.html'
+        ).render({'order': order})
     subject = "Your Order Was Sucessful"
     recipient = request.user.email
     send_user_email(subject, message, recipient)
     context = {
-        'order':order
+        'order': order
     }
     return render(request, "p5_ecommerce_store/thankyou.html", context)
 
@@ -262,7 +275,8 @@ def checkout_complete(request, pk):
 @login_required
 def rate_record(request, pk):
     rated_product = get_object_or_404(Product, id=pk)
-    new_rating, created = Rating.objects.get_or_create(user=request.user, product=rated_product)
+    new_rating, created = Rating.objects.get_or_create(
+        user=request.user, product=rated_product)
     user_rating = request.POST.get('rate')
     new_rating.rating_number = user_rating
     new_rating.save()
@@ -289,7 +303,9 @@ def news_letter_subscription(request):
     form = NewsLetterForm(request.POST)
     if form.is_valid():
         form.save()
-        messages.add_message(request, messages.SUCCESS, 'You successfully subscribed, thanks')
+        messages.add_message(
+            request, messages.SUCCESS, 'You successfully subscribed, thanks')
     else:
-        messages.add_message(request, messages.WARNING, 'Sorry, an error occured')
+        messages.add_message(
+            request, messages.WARNING, 'Sorry, an error occured')
     return HttpResponseRedirect('/')

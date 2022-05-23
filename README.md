@@ -539,7 +539,7 @@ The [WC3](https://validator.w3.org/nu/) validator was used to check for any erro
 #### **CSS Validation**
 
 #### **JS Hint Validation**
-
+The error re the undefined variable Stripe is defined in the library imported in payment.html and thus this error can be ignored. As can the warnings of the async functions that says I need to use an updated ES8 version becasue I am using the most up to date online tool. 
 
 
 ## **Bugs**
@@ -560,11 +560,11 @@ This was fixed by hiding the checkout button when the basket was empty by adding
 
 * Significant CSS problems during devlopment meant that no styling was working as it should. To prevent this from happening I inputted CSS in style tages during development, with the intention of fixing later. You may have noticed this in some of the screen shots I have provided, that some of the CSS isn't working. It seems that there were a few issues as to why this wasn't working, becasue some actions solved some rendering but not others. In the main, during development I had managed to get my css files in a bit of a muddle, and thus renaming and moving them around so that they were in the correct folders solved al ot of the problems. 
 
-* When updating items in basket and selecting update it was resetting to the previously selected quantity. In the terminal, using print() it was sending that quantity but for some reason wasn’t showing this on the site. 
+* When updating items in basket and selecting update it was resetting to the previously selected quantity. In the terminal, using print() it was sending that quantity but for some reason wasn’t showing this on the site. The reason for this was becasue there was a default value. 
 
 * Console error was indicating that it could not handle submit. I discovered that there was a conflict between two forms, one was inside another so the submit button could not tell which one it was submitting because they were nested. 
 
-* Terminal was returning an error of 'Invalid Integer 18.99. 
+* Terminal was returning an error of 'Invalid Integer 18.99'. This was because it was seeing the amount as a string and not an integer so I used the int function to convert it and multiplied it by 100 to take it to the lowest denomination as required by Stripe. 
 
 * When I tried to add to the model, gitpod rejected it saying “You are trying to add a non-nullable field 'product_ID' to product without a default; we can't do that (the database needs something to populate existing rows).
 Please select a fix:
@@ -576,17 +576,12 @@ https://stackoverflow.com/questions/32991965/you-are-trying-to-add-a-non-nullabl
 
 Despite the above, the product_id was not showing up in the admin panel, even after re-pushing. The above fix advised to have editable set to False, but changing this to = True made the field appear in the admin panel. 
 
-* Images were not rendering on storefront, despite them being uploaded in the correct way via the admin panel and seemingly cloudinary being installed correctly. 
+* Images were not rendering on storefront, despite them being uploaded in the correct way via the admin panel and seemingly cloudinary being installed correctly. I used the cloudinary template tag and also loaded and used the template tag. I found the solution [here](https://github.com/cloudinary/cloudinary-django-sample/blob/master/photo_album/templates/list.html)
 
-* Font awesome was not rendering requested fonts despite using same process used many times before. this was a very easy fix in the end, even though for some reason it took me a while to see it, I simply had forgotten to add some required code to the i tags.
+* Font awesome was not rendering requested fonts despite using same process used many times before. this was a very easy fix in the end, even though for some reason it took me a while to see it, I simply had forgotten to add some required code to the i tags, it was missing an 's'.
 
 * E-mails weren't being received for the sign up process, this was because the tempalte was not being rendered and I found the solution on stack overflow to use .render() to render the template:
 https://stackoverflow.com/questions/18055029/python-django-emailmultialternatives-template-object-has-no-attribute-encod
-
-* Gitpod wasn’t allowing ports to open which was causing problems with allowing API’s to work. This meant I could not check (for security reasons) to see if e-mail and payments via Stripe was working. 
-Ports were open on Heroku so I was using Heroku to check this. I used Django messages to display errors because the terminal was accessible. I was testing on the actual site rather than in development because Gitpod is what I was using for development. This meant a longer process to push every time I wanted to test, but I wasn’t sure what else to do. 
-This has made apparent to me that VS Code on my laptop will be my future development ‘go to’, rather than online using Gitpod. This, I hope, will allow me to test more conveniently. I’m not sure for the future if this means you will be able to test API’s on gitpod or not, but for the duration of this project I had to do it through the actual site and deploy to Heroku constantly. 
-
 
 
 ### Bug/Issue

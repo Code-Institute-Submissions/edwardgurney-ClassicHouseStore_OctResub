@@ -5,7 +5,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'p5_ecommerce_store/css/checkout.css' %}"/>
 
 <script src="https://js.stripe.com/v3/"></script>
-<!-- <script src="% static 'p5_ecommerce_store/js/checkout.js' %}"></script>    -->
+
 {% endblock %}
 {% block content %}
 <div class="container">
@@ -62,32 +62,18 @@
     </main>
     <script defer>
       // This is your test publishable API key.
-      const stripeKey = JSON.parse(document.getElementById('stripe-id').textContent)
-     console.log(stripeKey)
-     const bagId = JSON.parse(document.getElementById('bag-id').textContent)
-     const clientSecret = JSON.parse(document.getElementById('client-secret').textContent)
-     const returnUrl = JSON.parse(document.getElementById('return-url').textContent)
-     console.log(returnUrl)
-     console.log("returnUrl")
-     //const stripe = Stripe("pk_test_51KpqTKKMum47C0L1yixvLLYq2k4F53azrv5KoWQNCa6y68bFHCx4tAYFE4CzugAEAX3AX1D7jG8bmrm4EKWhSqKM00YVzWkcsR");
-     const stripe = Stripe(stripeKey)
-     // The items the customer wants to buy
+      const stripeKey = JSON.parse(document.getElementById('stripe-id').textContent);
+     const clientSecret = JSON.parse(document.getElementById('client-secret').textContent);
+     const returnUrl = JSON.parse(document.getElementById('return-url').textContent);
+     const stripe = Stripe(stripeKey);
      
      let elements;
      
      initialize();
      checkStatus();
-     console.log(document.querySelector("#payment-form"))
     
      // Fetches a payment intent and captures the client secret
      async function initialize() {
-       // const response = await fetch(`/create-payment-intent/${bagId}`, {
-       //   method: "GET",
-       //   // headers: { "Content-Type": "application/json" },
-       //   body: JSON.stringify(),
-       // });
-       // const { clientSecret } = await response.json();
-       // console.log(clientSecret)
      
        const appearance = {
          theme: 'stripe',
@@ -101,8 +87,6 @@
      async function handleSubmit(e) {
        e.preventDefault();
        setLoading(true);
-     
-       console.log(returnUrl)
 
        const { error } = await stripe.confirmPayment({
          elements,
@@ -112,7 +96,7 @@
 
          },
        });
-       console.log(error)
+       console.log(error);
        // This point will only be reached if there is an immediate error when
        // confirming the payment. Otherwise, your customer will be redirected to
        // your `return_url`. For some payment methods like iDEAL, your customer will
