@@ -513,12 +513,13 @@ The file was scoring low on its SEO scoring. One of the reasons is becasue my me
  * Bootstrap
  * Font Awesome
  * Summernote - Was used for the admin panel.
+ * Whitenoise - 
 
 ### **Technology and Validation**
 
  
 #### **Stripe**
-[Stripe](https://stripe.com/gb) was used for all payment activity on the site. An account was created and the API used to allow communication between Stripe servers and the application to ensure secure customer payment and customers payment details once submitted to be processed. It also helps provide confidence to the customer that their details are safe, which satisfied one og my user stories. 
+[Stripe](https://stripe.com/gb) was used for all payment activity on the site. An account was created and the API used to allow communication between Stripe servers and the application to ensure secure customer payment and customers payment details once submitted to be processed. It also helps provide confidence to the customer that their details are safe, which satisfied one of my user stories. 
 
 <img src="media/images/sucessful_payments.png">
 Above is an image of successful payments going through on the site. This is accessed on the payments tab of the dashboard.
@@ -529,18 +530,123 @@ Above is an image of successful payments going through on the site. This is acce
 
 [PEP8](http://pep8online.com/) was used to check for any errors. All of the code passes with no errors or warning present due to bad code. Example screen shots of some of the code are below:
 
-This screen shows the top of the file and the code being accepted on Pep8 for Python code. All python code was tested using this process. I removed all genuine errors and there were a few 'line too long' warnings. Whilst I removed the majority of these and broke them down into multiple lines, I left some in becasue they were long variable names rather than bad code. I was also of the opinion that, whilst I am aware of the 'line too long' item, it applied to a time when monitors were smaller and a max line limit of 80 was the accepted convention. Nowadays with bigger screens this is no longer the case, and longer lines are still readable/accepted. I found that breakign some of these down to the convention of 80 actually made it more untidy in some cases. 
+This screen shows the top of the file and the code being accepted on Pep8 for Python code. All python code was tested using this process. I removed all genuine errors and there were a few 'line too long' warnings. Whilst I removed the majority of these and broke them down into multiple lines, I left some in becasue they were long variable names rather than bad code. I was also of the opinion that, whilst I am aware of the 'line too long' item, it applied to a time when monitors were smaller and a max line limit of 80 was the accepted convention. Nowadays with bigger screens this is not necessarily the case, and longer lines are still readable/accepted. I changed the majority, but some, for example, in settings.py needed to stay as they were. 
 
+<details><summary>admin.py</summary>
+
+<img src="media/images/admin_py.png">
+
+</details>
+
+<details><summary>apps.py</summary>
+
+<img src="media/images/apps_py.png">
+
+</details>
+
+<details><summary>forms.py</summary>
+
+<img src="media/images/forms_py.png">
+
+</details>
+
+</details>
+
+<details><summary>urls.py</summary>
+
+<img src="media/images/urls_py.png">
+
+</details>
+
+</details>
+
+<details><summary>views.py</summary>
+
+<img src="media/images/views_py.png">
+
+</details>
+
+<details><summary>settings.py</summary>
+
+<img src="media/images/settings_py.png">
+
+</details>
+
+<details><summary>urls.py</summary>
+
+<img src="media/images/urls2_py.png">
+
+</details>
 <br>
 
 #### **WC3 Validation**
 
-The [WC3](https://validator.w3.org/nu/) validator was used to check for any errors in the HTML code. All code passes with all major errors removed. 
+The [WC3](https://validator.w3.org/nu/) validator was used to check for any errors in the HTML code. All code passes with all major errors removed. Some images of pages passing are below, click on the dropdown to view. 
+
+<details><summary>base.html</summary>
+
+<img src="media/user_stories.png">
+
+</details>
+
+<details><summary>index.html</summary>
+
+<img src="media/user_stories.png">
+
+</details>
+
+<details><summary>basket.html</summary>
+
+<img src="media/user_stories.png">
+
+</details>
+
+<details><summary>checkout.html</summary>
+
+<img src="media/user_stories.png">
+
+</details>
+
+<br>
+
 #### **CSS Validation**
+
+<details><summary>style.css</summary>
+
+<img src="media/images/style_css.png">
+
+</details>
+
+<details><summary>login.css</summary>
+
+<img src="media/images/login_css.png">
+
+</details>
+
+<details><summary>checkout.css</summary>
+
+<img src="media/images/checkout_css.png">
+
+</details>
+
+<details><summary>detail.css</summary>
+
+<img src="media/images/detail_css.png">
+
+</details>
+
+<br>
 
 #### **JS Hint Validation**
 The error re the undefined variable Stripe is defined in the library imported in payment.html and thus this error can be ignored. As can the warnings of the async functions that says I need to use an updated ES8 version becasue I am using the most up to date online tool. 
 
+<details><summary>checkout.js</summary>
+
+<img src="media/images/checkout_js.png">
+
+</details>
+
+<br>
 
 ## **Bugs**
 

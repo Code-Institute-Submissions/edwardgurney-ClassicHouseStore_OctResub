@@ -4,7 +4,6 @@ from django.contrib.auth import get_user_model
 from cloudinary.models import CloudinaryField
 
 from decimal import Decimal
-# User = get_user_model()
 
 
 class Category(models.Model):

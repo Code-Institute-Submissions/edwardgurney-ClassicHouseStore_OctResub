@@ -4,10 +4,8 @@ from .models import (Product, Category, Bag, BagItem, ShippingAddress,
                      Rating, NewsLetterSubs)
 
 
-
 @admin.register(Product)
 class ProductAdmin(SummernoteModelAdmin):
-
     prepopulated_fields = {'slug': ('title',)}
     summernote_fields = ('description')
     list_filter = ('artist', 'label', 'title')
