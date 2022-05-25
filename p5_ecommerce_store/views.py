@@ -25,7 +25,6 @@ class StoreFrontView(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        print('I got here')
         context['allcategories'] = Category.objects.all()
         context['newsletter_form'] = NewsLetterForm()
         return context
@@ -46,6 +45,11 @@ class CategoryView(generic.DetailView):
 class ProductDetailView(generic.DetailView):
     model = Product
     template_name = 'p5_ecommerce_store/product_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['allcategories'] = Category.objects.all()
+        return context
 
 
 def mergebags(queryset):
@@ -88,7 +92,8 @@ class BasketView(View):
                 except BagItem.DoesNotExist:
                     pass
         context = {
-            'object': current_bag
+            'object': current_bag,
+            'allcategories': Category.objects.all()
         }
         return render(request, self.template_name, context)
 

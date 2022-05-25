@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="container">
-<H1><bold>Thank you for shopping with us.</bold></H1>
+<H1><strong>Thank you for shopping with us.</strong></H1>
 <H3>
     Your order is on its way and your order number is {{ order.order_number }}, please 
     keep this for your records.
@@ -10,8 +10,8 @@
     You will receive an e-mail shortly to confirm your order
 </H3>
 <H4>If you have any questions, please contact us</H4>
-<a href="{% url 'home' %}">
-    <button class="w-100 btn btn-secondary bg-dark gray-theme" type="button">Forgotten Something? Clck here to continue shopping</button>
+<a class="w-100 btn btn-secondary bg-dark gray-theme" href="{% url 'home' %}">
+    Forgotten Something? Clck here to continue shopping
   </a>
 </div>
 {% endblock %}

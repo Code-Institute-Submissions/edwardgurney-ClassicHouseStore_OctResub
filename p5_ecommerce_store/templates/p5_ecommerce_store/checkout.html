@@ -36,11 +36,11 @@
           <div class="user_address">
             <label for="address_{{forloop.counter}}">
               <input id="address_{{forloop.counter}}" required type="radio" name="address" value="{{address.id}}">
-              <p>
+              <span>
               House Number: {{ address.house_number }}<br/>
               Address: {{ address.address_1 }}<br/>
               Post Code: {{ address.postcode }}
-            </p>
+            </span>
             </label>
           </div>
           {% endfor %}
@@ -52,13 +52,11 @@
           <h4 class="mb-3">Shipping Address</h4>
           <form method="post" class="needs-validation" novalidate>{% csrf_token %}
               {{form|crispy}}
-            
-  
             <hr class="my-4">
-  
             <button class="w-100 btn btn-primary btn-lg btn-secondary bg-dark" type="submit">Save Address</button>
           </form>
         </div>
-              </div>
+      </div>
     </main>
+</div>
 {% endblock %}

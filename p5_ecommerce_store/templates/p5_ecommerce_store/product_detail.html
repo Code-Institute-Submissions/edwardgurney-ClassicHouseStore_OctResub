@@ -15,12 +15,12 @@
       <p><strong>Genre:</strong> {{ product.category }}</p>
       <p class="col-md-8 fs-4">{{ product.description|safe }}</p>
       {% if product.preview_audio_link %}
-        <a href="{{product.preview_audio_link}}" target="_blank">
-          <button class="btn btn-sm btn-secondary bg-dark" type="button">Listen</button>
+        <a class="btn btn-sm btn-secondary bg-dark" href="{{product.preview_audio_link}}" target="_blank">
+          Listen
         </a>
       {% endif %}
-      <a href="{% url 'home' %}">
-        <button type="button" class="btn btn-sm btn-secondary bg-dark">Go back to store</button>
+      <a class="btn btn-sm btn-secondary bg-dark" href="{% url 'home' %}">
+        Go back to store
       </a>
       <br>
       <br>

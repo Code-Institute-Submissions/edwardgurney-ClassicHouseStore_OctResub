@@ -513,7 +513,7 @@ The file was scoring low on its SEO scoring. One of the reasons is becasue my me
  * Bootstrap
  * Font Awesome
  * Summernote - Was used for the admin panel.
- * Whitenoise - 
+ * Whitenoise - I installed this to try and solve an error in the console as part of a debuggin process. The error was a collect static error, and heroku advised that whitenoise may be the solution. It wasn;t the solution, but this is why whitenoise is installed - and not used. 
 
 ### **Technology and Validation**
 
