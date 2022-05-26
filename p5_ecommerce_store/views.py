@@ -186,7 +186,7 @@ class CheckoutView(LoginRequiredMixin, SingleObjectMixin, View):
         bag = self.get_object()
         if 'user_address_selection' in request.POST:
             address = ShippingAddress.objects.get(
-                id=request.POST.get('address'))
+                id=int(request.POST.get('address')))
             if address is None:
                 return HttpResponseRedirect(f"/checkout/{bag.id}")
             if bag.order is None:
@@ -203,7 +203,7 @@ class CheckoutView(LoginRequiredMixin, SingleObjectMixin, View):
                 order.order_total = bag.total
                 order.shipping_address = address
                 order.save()
-                return HttpResponseRedirect(f"/payment/{bag.order.id}")
+            return HttpResponseRedirect(f"/payment/{bag.order.id}")
         form = AddressForm(request.POST)
         if form.is_valid():
             form.instance.user = logged_user

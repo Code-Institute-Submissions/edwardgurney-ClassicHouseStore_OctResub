@@ -52,10 +52,6 @@
     opacity: 0.5;
     cursor: default;
   }
-
-  .gray-theme {
-    color: #212529;
-  }
   
   /* spinner/processing state, errors */
   .spinner,

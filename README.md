@@ -1,10 +1,11 @@
 # Classic House Vinyl Store
 ### Developer: Edward Gurney
-INSERT PICS OF SITE HERE
+
 ### You can view the live project here: [Classic House Vinyl Store](https://classic-house-store.herokuapp.com/)
 <br>
 
 ## **Table of Contents**
+
 [Introduction](https://github.com/edwardgurney/ClassicHouseStore#project-5---introduction)
 
 [User Experience](https://github.com/edwardgurney/ClassicHouseStore#user-experience)
@@ -51,11 +52,11 @@ When landing on the site, the user will be greeted with records so that they can
 
 CRUD functionality is employed using a database to store relevant data and various models have been created. 
 
-An Agile methodolgy was used during the development process and this has been documented through the use of the projects tab in github reocrding issues and utlisation of kanban boards.
+An Agile methodolgy was used during the development process and this has been documented through the use of the projects tab in github and utlisation of kanban boards.
 ## **User Experience**
 
 ### <b>*Project Goals*</b>
-Classic House Vinyl Store is a an e-commerce site where users can hunt down hard to find records and for any house lovers to purchase records for their DJ sets or for use at home. It will provide an easy to use site, where users can locate what they want easiliy, using filter and search, but also the ability to use browse the site. 
+Classic House Vinyl Store is a an e-commerce site where users can hunt down hard to find records and for any house lovers to purchase records for their DJ sets or for use at home. It will provide an easy to use site, where users can locate what they want easily, using filter and search, but also the ability to browse the site. 
 
 The site will allow users to register for an account and will incorporate Stripe functionality to allow single payment transaction at checkout.
 ### <b>*Business Goals*</b>
@@ -64,7 +65,7 @@ As a business owner the site needs to be pleasing and easy to use to encourage u
 
 Giving customers the ability to listen to a section of the music, to check it is what they are looking for will also help to increase sales.
 
-Features search as filter and search will allow users to hunt down what they are lookingn for quicker, and also allow them to filter their favourite genre of house music. 
+Features such as filter and search will allow users to hunt down what they are lookingn for quicker, and also allow them to filter their favourite genre of house music. 
 
 ### <b>*Marketing*</b>
 
@@ -74,10 +75,10 @@ There is also a site map that can be accessed from the homepage, and this is a w
 
 ### <b>*E-Mail Marketing*</b>
 When users sign up they need to provide an e-mail address and when they do they will receive a 'welcome e-mail' thanking them for signing up. The e-mail will be stored for future marketing campaigns, and also is used to send a confirmation e-mail when they place an order with their order details and order number. 
-Currently, the e-maisl come from a personal account of mine that was used in testing. In the real workd this would be an e-mail set up from the store, rather then a personal account.
+Currently, the e-mails come from a personal account of mine that was used in testing. In the real world this would be an e-mail set up from the store, rather then a personal account.
 
 ### <b>*Social Media*</b>
-As part of the project and to maximise reach to the store owners audience, social media sites such as Facebook would be employed. This would allow the site owner to interact with customer directly and would over time, build up more content for customers to browse through. Below is a wireframe of what the page would look like. There would also be further pages set up on other social media sites, such as Instagram, Twitter and Tik Tok.
+As part of the project and to maximise reach to the store owners audience, social media sites such as Facebook would be employed. This would allow the site owner to interact with customers directly and would over time, build up more content for customers to browse through. Below is a wireframe of what the page would look like. There would also be further pages set up on other social media sites, such as Instagram, Twitter and Tik Tok.
 
 <img src="media/images/social_media1.png">
 <img src="media/images/social_media2.png">
@@ -91,7 +92,7 @@ As part of the project and to maximise reach to the store owners audience, socia
 - I want to be able to browse through the store easily, where I can just listen to music for when I'm not looking for anything in particular. 
 - I want to be able to register on the site and be able to log in.
 - I want to see the prices of records so that I know how much I am spending.
--If I sign up as a first time user I Want to receive a confirmation e-mail so that I know everytning has completed properly. 
+- If I sign up as a first time user I want to receive a confirmation e-mail so that I know everytning has completed properly. 
 
 ### *Returning User Goals*
 - I want records to be easily finadable, so that I can listen to the music again, or find them if I am returning to the site to purchaase.
@@ -137,19 +138,16 @@ During the project planning stage, some wireframes were constructed for the home
 <img src="media/images/home_page.png">
 
 <br>
-<br>
 
 ### *Product Details - Larger Screens*
 
 <img src="media/images/product_detail_page.png">
 
 <br>
-<br>
 
 ### *Site Map - Larger Screens*
 
 <img src="media/images/site_map.png">
-<br>
 <br>
 
 ### *Homepage - Mobile Screens*
@@ -160,7 +158,7 @@ During the project planning stage, some wireframes were constructed for the home
 
 ### *Images*
 
-Where possible, all images are actual photos of the item in stock. This is becasue records will be in various conditions once they have been sourced and this will provide an idea to the user of the quality. Currently, all iamges are acutal records in stock, but this may not be possible going forward to provide for all recrods. 
+Where possible, all images are actual photos of the item in stock. This is becasue records will be in various conditions once they have been sourced and this will provide an idea to the user of the quality. Currently, all images are actual records in stock, but this may not be possible going forward to provide for all records. 
 
 ### *Font Awesome*
 
@@ -186,9 +184,10 @@ The template used for the app was a Bootstrap template which can be found [here]
 
 ### **Navbar**
 <img src="media/images/header.png">
+
 The navbar was a template taken from Bootstrap and can be found [here](https://getbootstrap.com/docs/5.1/examples/navbars/). I amended this for the purposes of the site. The store name will take the user back to the homepage if clicked. This is purely for user experience as users are used to this from other sites. The 'Home' tab also does the same thing.
 
-Users can aso view their basked, if they are logged in this will save their basket from a previous session so that they can return to it later. 
+Users can aso view their basket, if they are logged in this will save their basket from a previous session so that they can return to it later. 
 
 <br>
 
@@ -196,7 +195,7 @@ Users can aso view their basked, if they are logged in this will save their bask
 
 <img src="media/images/genres.png">
 
-Importantly for user experience the next tab 'Genres' is where users can filter specifically the type of house music that they are looking for. This will increase UX in that they won't be greeted ith house music that isn't to their liking. 
+Importantly for user experience the next tab 'Genres' is where users can filter specifically the type of house music that they are looking for. This will increase UX in that they won't be greeted with house music that isn't to their liking. 
 
 The navbar also provides 'login', 'logout' and 'signup' tabs. Depending on the status of the user, different tabs will be visibile. For example, if they are signed in, only logout will be visible. If they are logged out, then login and signup will be visible. Below you can see the navbar when a user is not signed in.
 
@@ -221,7 +220,7 @@ Finally on the navbar is the 'search' field. This is important for UX, and anyth
 ### **Products**
 <img src="media/images/product_tab.png">
 
-All products have their own product tab on the homepage for quick and easy viewing. A goal of the site was for users to have quick access, so they can start looking at and listening to records staright away. On the product tabs some quick information is provided, such as title, artist and price. Users can also quickly add to basket, click 'view' to review more details and also listen to the track via Spotify. 
+All products have their own product card on the homepage for quick and easy viewing. A goal of the site was for users to have quick access, so they can start looking at and listening to records staright away. On the product cards some quick information is provided, such as title, artist and price. Users can also quickly add to basket, click 'view' to review more details and also listen to the track via Spotify. 
 
 ### **Product Details**
 <br>
@@ -235,14 +234,14 @@ The product detail page extends the base template and keeps the navbar and foote
 
 <img src="media/images/rating_listen.png">
 
-Beneath the product details are some further user ineteration features. The user can click 'listen' to be taken to Spotify to listen to the track, users can also go back to store and most importantly 'Add to Basket'. This is pre-populated to 1, but when the user hovers in the box, they can adjust the amount by clicking the up and down arrows that appear. 
+Beneath the product details are some further user interaction features. The user can click 'listen' to be taken to Spotify to listen to the track, users can also go back to store and most importantly 'Add to Basket'. This is pre-populated to 1, but when the user hovers in the box, they can adjust the amount by clicking the up and down arrows that appear. 
 
 Finally, the user, if they are logged in, can rate the record out of 5. The average rating of the record from all users is also shown, so that users can see how popular a record is. All of the functionality that requires the user to login (such as this one) uses login required decorators in the views.py file. 
 
 ### **Basket**
 
 <img src="media/images/add_to_basket.png">
-The add to basket page is as what one would expect. It shows an item number for each product added as well as the record title and the total amount payable. Here, the user can also increase or decrease the quantity and if they want to remove the item they can do so by changing the quantityt to zero. 
+The add to basket page is as what one would expect. It shows an item number for each product added as well as the record title and the total amount payable. Here, the user can also increase or decrease the quantity and if they want to remove the item they can do so by changing the quantity to zero. 
 The navbar and footers appear as they do on all pages, and this is the page where the user can review their purchase before proceeding to the checkout page. They do this by clicking the checkout button. 
 
 <br>
@@ -276,7 +275,7 @@ Users are then greeted with the payment page where they can input their card det
 
 ### **Thankyou Page and Confirmation E-mail**
 
-**ADD IMAGE OF THANKYOU PAGE**
+<img src="media/images/thankyou_page.png">
 
 Once the user has entered their card details and clicked 'Pay Now' they are taken to a thankyou page where they are provided with an order number and a thankyou message. Users can click a button to continue shopping, which will take them back to the homepage. They are also sent a confirmation e-mail for their records, that has the order number and a thankyou message. you can see examples of this below.
 <img src="media/images/email_in_inbox.png">
@@ -300,7 +299,7 @@ The below image shows headline information of user accounts accessed when admin 
 
 <br>
 
-The below is a representaion of the product model as it is seen in the admin panel. You can see each product from the site has been added here, with the relevant information added from the fields in the prodict model, for example, artist and price. New items can be created and added at this point. 
+The below is a representaion of the product model as it is seen in the admin panel. You can see each product from the site has been added here, with the relevant information added from the fields in the product model, for example, artist and price. New items can be created and added at this point. 
 <img src="media/images/product_model.png">
 <br>
 When admin users click on the item, they are then taken to the finer detail (see below), where they can amend any information to the provided fields that they like. This is also where they can add links to Spotify so that the user can listen to the record. There is also an option to add a media file. This is so the store user can add their own 1 minute clip of some audio in the future. 
@@ -312,25 +311,29 @@ The product model section also has a useful filter implemented, that provides th
 
 <img src="media/images/filter_product_admin.png">
 
-The below image is the cateory model that is acceeible on the admin panel. Here new categories can be added as and when needed. 
+The below image is the category model that is accessible on the admin panel. Here new categories can be added as and when needed. 
 
 <img src="media/images/category.png">
+
+The news letter sign up form on the site allows users to sign up to a newsletter. Once they add their e-mail address, it is saved to the model and the e-mail addresses can be viewed in the admin panel, as you can see below.
+
+<img src="media/images/subscription.png">
 
 
 ### **Features to Implement in future Versions**
 There are many features that I would like to implement in future versions if I had more time. 
 
-1. Firstly and most obviosuly, I would like to improve the UX and the presentation of the site. This site is very much a proof of concept, that the site works as it should and purchases can be made. There is some basic cosmetic design, but the first thing to change would be to improve this. This should be just a time thing, because the mechanics of the site are now working as they should. This is of particular importance to the site map page, and the thankyou for your oder pages, as they are very standard at the moment. I included them for project requirements and it can be seen that they are functional, time constraints did not allow me to get these to how I wanted them to be. 
+1. Firstly and most obviosuly, I would like to improve the UX and the presentation of the site. This site is very much a proof of concept, that the site works as it should and purchases can be made. There is some basic cosmetic design, but the first thing to change would be to improve this. This should be just a time thing, because the mechanics of the site are now working as they should. This is of particular importance to the site map page, and the thankyou for your order pages, as they are very standard at the moment. I included them for project requirements and it can be seen that they are functional, time constraints did not allow me to get these to how I wanted them to be. 
 
 2. More stock would be added to the site over time, with pagination to keep the home page neat and tidy.
 
 3. I would like to implement the ability for admin users to select an item as out of stock, so that this takes the item off of the site (or notifies users that it is out of stock). Currently, admin users will have to notice when an item is out of stock and remove it manually. This could lead to dissapointed customers that order something that isn't in stock. 
 
-4. Developing on this further, I would love to implement a system that can do this automatically, so admin users can add the amount they have in stock once, and then when a reord is purchased, it automatically reduces the amount in stock.
+4. Developing on this further, I would love to implement a system that can do this automatically, so admin users can add the amount they have in stock once, and then when a record is purchased, it automatically reduces the amount in stock.
 
 5. Something noticably missing for me in this is account information for users. I would like them to be able to access their account information, and change and update their details as and when. I'd also like them to be able to view their past orders.
 
-6. I would also like to add to the site 1 minute snippits of the music. This facility is already there in terms of the admin panel, becasue as you will see, I included it in my original products model (as it fomred part of my planning really early on in the design stage). However, logisitcally for this submission, obtaining the relevant 1 minute clips, recording them and then adding them to the product in the admin panel was time consuming, and I needed and wanted to get the submission done. However, this facility to do that is pretty much there already I think, so could be implemented rather easily in a future version. 
+6. I would also like to add to the site 1 minute snippits of the music. This facility is already there in terms of the admin panel, becasue as you will see, I included it in my original products model (as it formed part of my planning really early on in the design stage). However, logisitcally for this submission, obtaining the relevant 1 minute clips, recording them and then adding them to the product in the admin panel was time consuming, and I needed and wanted to get the submission done. However, this facility to do that is pretty much there already I think, so could be implemented rather easily in a future version. 
 
 
 ## **Testing**
@@ -349,12 +352,12 @@ The above screenshot, which you have already seen during the breakdown of the si
 The above image shows an example of the product details page, meeting the requirements of the user story above. 
 
 ### **User Story 3**
-* As a shopper I can view a description of the record so that find out more about the record
+* As a shopper I can view a description of the record so that I can find out more about the record
 <img src="media/images/description.png">
 The above picture shows the product description that a shopper can read to find out more about the record. It also includes a link to wikipedia for them to find out even more. Thus completing User Story 3.
 
 ### **User Story 4**
-* As a shopper I can easily view the total of my purchase/s so that understand how much I'm spending as I add to cart.
+* As a shopper I can easily view the total of my purchase/s so that I can understand how much I'm spending as I add to cart.
 <img src="media/images/add_to_basket.png">
 <img src="media/images/your_cart.png">
 
@@ -377,7 +380,7 @@ This is similar to the previous user story, that the user can view their saved a
 
 * As a site user I can receive an e-mail confirmation once registered so that I can refer to it in the future
 <img src="media/images/signup_email.png">
-The above is the baasic e-mail response received ince the user signs up, they receive an e-mail confirming that it has happened and that it has been a success. This shows that the functionality is complete for this user story, and the e-mail will be beefed out by the store owner. 
+The above is the baasic e-mail response received once the user signs up, they receive an e-mail confirming that it has happened and that it has been a success. This shows that the functionality is complete for this user story, and the e-mail will be beefed out by the store owner. 
 
 ### **User Story 8**
 * As a site user I can select if I think the record is 'banging' so that I can see how popular it is.
@@ -470,15 +473,35 @@ The above image shows that data can be edited and updated.
 In the above image you can see how as an admin they can delete a product if the item goes out of stock. 
 
 <br>
-<br>
 
 ### **Performance Testing**
-To test the perfromane of the site, I used Google Lighthouse in Chrome Dev Tools. Below are some screenshots of how each page performed:
+To test the perfromance of the site, I used Google Lighthouse in Chrome Dev Tools. Below are some screenshots of how each page performed:
 
-index.html
-ADD IMAGES OF LIGHTHOUSE PERFORMANCE REPORT
-With an overall performance of 97%, this is good, but there is room for some slight improvement in the Accessibility section becasue it scored scored 89%, which is a little lower than I would like. This is because of the lack of alt tags for the images. I added the images via a for loop and through cloudinary, and so will review how to add an alt attribute when images are being rendered like this. I did try, but it creatd a surver error. This is something to review in a future version.
-The file was scoring low on its SEO scoring. One of the reasons is becasue my meta tag title of keywords wasn't being recognised, so after following [this](https://web.dev/meta-description/?utm_source=lighthouse&utm_medium=devtools) that lighhouse provided, it showed me that using 'description' would improve the score, which it did (by 9%). 
+<details><summary>index.html</summary>
+
+<img src="media/images/lighthouse.png">
+
+</details>
+<details><summary>product_detail.html</summary>
+
+<img src="media/images/lighthouse_product_detail.png">
+
+</details>
+<details><summary>basket.html</summary>
+
+<img src="media/images/lighthouse_basket.png">
+
+</details>
+<details><summary>checkout.html</summary>
+
+<img src="media/images/lighthouse_checkout.png">
+
+</details>
+
+<br>
+
+I am happy with these scores, compared to my first test, and making some changes as recommended, this is much more in line with where it should be. For example, The file was scoring low on its SEO scoring. One of the reasons is becasue my meta tag title of keywords wasn't being recognised, so after following [this](https://web.dev/meta-description/?utm_source=lighthouse&utm_medium=devtools) that lighhouse provided, it showed me that using 'description' would improve the score, which it did (by 9%).
+
 
 ### **Additional Testing**
 * The site has been used by friends and family to try and find any errors. There are no known errors in this version that have been found that haven't been fixed during the development process. 
@@ -504,16 +527,16 @@ The file was scoring low on its SEO scoring. One of the reasons is becasue my me
 
 #### **Django**
  * Django Summernote - Used to provide admins with an easier way to provide content for the main site, in the back end. This allows admins to improve the layout. 
- * Django all-auth
+ * Django all-auth - I installed all auth at the start of the project, but I did not end up using it. I left it installed in case any future decisions are made to implement it in future versions. 
  * Django Crispy forms - Was used to display pre-designed forms and inject some CSS into the template. 
  * Django Messages - This was used to display messages to users such as notifying the user of sucessful form submission. 
  * Gunicorn 
  * Cloudinary - Used to store images externally to assist with Heroku issues of wiping content. 
  * Postgres - Database management system used. 
  * Bootstrap
- * Font Awesome
+ * Font Awesome - Used for the listen graphic on the page.
  * Summernote - Was used for the admin panel.
- * Whitenoise - I installed this to try and solve an error in the console as part of a debuggin process. The error was a collect static error, and heroku advised that whitenoise may be the solution. It wasn;t the solution, but this is why whitenoise is installed - and not used. 
+ * Whitenoise - I installed this to try and solve an error in the console as part of a debugging process. The error was a collect static error, and heroku advised that whitenoise may be the solution. It wasn't the solution, but this is why whitenoise is installed - and not used. 
 
 ### **Technology and Validation**
 
@@ -581,29 +604,47 @@ This screen shows the top of the file and the code being accepted on Pep8 for Py
 
 #### **WC3 Validation**
 
-The [WC3](https://validator.w3.org/nu/) validator was used to check for any errors in the HTML code. All code passes with all major errors removed. Some images of pages passing are below, click on the dropdown to view. 
+The [WC3](https://validator.w3.org/nu/) validator was used to check for any errors in the HTML code. All code passes with all major errors removed. Some images of pages passing are below, click on the dropdown to view. To check the HTML I viewed page source, which provides the HTML that I inputted into the validator. 
 
 <details><summary>base.html</summary>
 
-<img src="media/user_stories.png">
+<img src="media/images/base_html.png">
 
 </details>
 
 <details><summary>index.html</summary>
 
-<img src="media/user_stories.png">
+<img src="media/images/index_html.png">
 
 </details>
 
 <details><summary>basket.html</summary>
 
-<img src="media/user_stories.png">
+<img src="media/images/basket_html.png">
+
+</details>
+
+<details><summary>product_detail.html - The errors left on this page are a result of summernote and not anything done by me personally. </summary>
+
+<img src="media/images/detail_html.png">
 
 </details>
 
 <details><summary>checkout.html</summary>
 
-<img src="media/user_stories.png">
+<img src="media/images/checkout_html.png">
+
+</details>
+
+<details><summary>login.html</summary>
+
+<img src="media/images/login_html.png">
+
+</details>
+
+<details><summary>signup.html</summary>
+
+<img src="media/images/signup_html.png">
 
 </details>
 
@@ -662,11 +703,11 @@ This was fixed by hiding the checkout button when the basket was empty by adding
 
 <img src="media/images/does_not_exist.png">
 
-* When adding a new user and a new address, when the user saved the address it wasn't displaying in the addresses section, and if the user kept resubitting the same form it would save and duplictae the addresses. This bug was solved by clearing the form upon submission and displaying the saved address on submission. 
+* When adding a new user and a new address, when the user saved the address it wasn't displaying in the addresses section, and if the user kept resubmitting the same form it would save and duplicate the addresses. This bug was solved by clearing the form upon submission and displaying the saved address on submission. 
 
-* Significant CSS problems during devlopment meant that no styling was working as it should. To prevent this from happening I inputted CSS in style tages during development, with the intention of fixing later. You may have noticed this in some of the screen shots I have provided, that some of the CSS isn't working. It seems that there were a few issues as to why this wasn't working, becasue some actions solved some rendering but not others. In the main, during development I had managed to get my css files in a bit of a muddle, and thus renaming and moving them around so that they were in the correct folders solved al ot of the problems. 
+* Significant CSS problems during devlopment meant that no styling was working as it should. To prevent this from happening I inputted CSS in style tages during development, with the intention of fixing later. You may have noticed this in some of the screen shots I have provided, that some of the CSS isn't working. It seems that there were a few issues as to why this wasn't working, becasue some actions solved some rendering but not others. In the main, during development I had managed to get my css files in a bit of a muddle, and thus renaming and moving them around so that they were in the correct folders solved alot of the problems. 
 
-* When updating items in basket and selecting update it was resetting to the previously selected quantity. In the terminal, using print() it was sending that quantity but for some reason wasn’t showing this on the site. The reason for this was becasue there was a default value. 
+* When updating items in basket and selecting update it was resetting to the previously selected quantity. In the terminal, using print() to error check, it was sending that quantity but for some reason wasn’t showing this on the site. The reason for this was becasue there was a default value. 
 
 * Console error was indicating that it could not handle submit. I discovered that there was a conflict between two forms, one was inside another so the submit button could not tell which one it was submitting because they were nested. 
 
@@ -686,9 +727,10 @@ Despite the above, the product_id was not showing up in the admin panel, even af
 
 * Font awesome was not rendering requested fonts despite using same process used many times before. this was a very easy fix in the end, even though for some reason it took me a while to see it, I simply had forgotten to add some required code to the i tags, it was missing an 's'.
 
-* E-mails weren't being received for the sign up process, this was because the tempalte was not being rendered and I found the solution on stack overflow to use .render() to render the template:
+* E-mails weren't being received for the sign up process, this was because the template was not being rendered and I found the solution on stack overflow to use .render() to render the template:
 https://stackoverflow.com/questions/18055029/python-django-emailmultialternatives-template-object-has-no-attribute-encod
 
+* One last bug that I found before final deployment was linked to a previous bug, but when a new user registered and had not filled out the address form, they were able to click make payment. This gave a server error. I fixed this by hiding the form when there is no address to select using an if statement.
 
 ### Bug/Issue
 
@@ -739,16 +781,20 @@ I viewed a number of sites and video tutorials. I have listed these below.
 
 * I obtained what I need to do for my robots.txt file from [here](https://adamj.eu/tech/2020/02/10/robots-txt/)
 
+* For the favicon I used [this](https://favicon.io/) favicon generator. Here you enter some text of the site and it creates a favicon. 
+
 * [MyColor](https://mycolor.space/) was used to get an idea of colors that would complement each other. This was a rather basic look, considering the site is only a couple of colors, but it was still a worthwhile exercise.
 
 ## **Project Reflection**
-Overall this has been incredibly tough compared to the other projects but I am relatively happy with how it has gone. There are a lot of improvements that I would like to make to it, but time constraints and other commitments for a project of this size have proven dificult for me to implement what I would like. I am happy with the code and that the foundations of a good working site are in place. It has been a long 14 months on the course, with little respite, and so I am just happy to get this project away and have a couple of months to rest and reflect, and then pick up some fun projects. Creative design may not be my strong point, and I believe this is evident in this submission, but I have learned that this is an area to improve upon and to really assess similar sites in the future to get some ideas, I also believe (and hope) that in the real world, working in dev teams, that there will be assistance and specialists on hand for these areas. The learning experience of creating a full e-commerce site has been massive, and whilst I knew this project was large, I'm glad I didn't know how much work was needed at the start, as it may have been overwhelming for me. 
+Overall this has been incredibly tough compared to the other projects but I am relatively happy with how it has gone. There are a lot of improvements that I would like to make to it, but time constraints and other commitments for a project of this size have proven dificult for me to implement what I would like. I am happy with the code and that the foundations of a good working site are in place. It has been a long 14 months on the course, with little respite, and so I am just happy to get this project away and have a couple of months to rest and reflect, and then pick up some fun projects. The learning experience of creating a full e-commerce site has been massive, and whilst I knew this project was large, I'm glad I didn't know how much work was needed at the start, as it may have been overwhelming for me. 
 
-I would have loved to have completed this course as a full time student, like a lot of my colleagues are able to. Working full time and being a father to two children under 3 has meant that the amount of time that I have been abe to spend on it is significantly lower, yet I am still proud of what I have been able to do. When I look at the presentation of other submissions, it can be disheartening becasue I know that if I was able to put 40 hours a week into the course, and still get my weekends off (or just have no children to look after) I would have been able to maintain some more merit grades to add to the ones I have got, and maybe even a distinction or two. My mentor Chris Quin, who has been amazing to me, has made me see that the race is just against myself and nobody else. However, I work in the week and then my weekends are taken for the course, which has led to very little time off over the last year, which has been a struggle and my mental health has suffered and my marraige has been under additional strain, my wife has been amazing to support me though this. Adding onto this my father having a heart attack and my 3 month old son being admitted to hospital just in the last few weeks has added to the strain during this final leg of the course. I think that CI should not be advertising this course as 12-15 hours per week, becasue for people with no coding background, it is certainly not. It is 20-25 hours just to keep up, and when you are working 40+ hours a week in full-time work, this is very very hard to do. 
+I would have loved to have completed this course as a full time student, like a lot of my colleagues are able to. Working full time and being a father to two children under 3 has meant that the amount of time that I have been abe to spend on it is significantly lower, yet I am still proud of what I have been able to do. When I look at the presentation of other submissions, it can be disheartening becasue I know that if I was able to put 40 hours a week into the course, and still get my weekends off (or just have no children to look after) I would have been able to maintain some more merit grades to add to the ones I have got, and maybe even a distinction or two. My mentor Chris Quin, who has been amazing to me, has made me see that the race is just against myself and nobody else. However, I work in the week and then my weekends are taken for the course, which has led to very little time off over the last year, which has been a struggle and my mental health has suffered and my marraige has been under additional strain, my wife has been amazing to support me though this. Adding onto this my father having a heart attack and my 3 month old son being admitted to hospital just in the last few weeks has added to the strain during this final leg of the course. 
 
 Despite all of this, the past 12-14 months I have been on a journey, and I have surprised myself of what I have been able to do, I never thought I would be able to do it. Not only with the coding, but I have learnt how to approach things differently in life and feel I have obtained a new life skill. I will continue to practice my coding, after a well earned break, and whether I pursue a career in it or not, I'm happy that I will at least be able to help my two children when they start to do this at school. If I hadn't have done this course, I'd have had absolutely no idea how to help them.
 
 ## **Acknowledgements**
 My amazing wife who has managed our two children on her own a lot over this past year (and also been pregnant with one of them). Time I won't get back with them, but I am greatful for her and hopefully now I can get back to helping her and being a good father to my two amazing children.
 
-My mentor Chris Quin, really helped pick me up at times, having my mentor sessions out of motel rooms when I am away with work, it got on top of me at times but he has a way of making you feel that you can do it. I will always remember him as a really great guy. 
+My mentor Chris Quin, really helped pick me up at times, having my mentor sessions out of motel rooms when I am away with work, it got on top of me at times but he has a way of making you feel that you can do it. I will always remember him as a really great guy. Thank you Chris. 
+
+[Finally...](https://www.youtube.com/watch?v=wGRF3GQ4Wdk)

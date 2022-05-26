@@ -21,4 +21,5 @@ urlpatterns = [
     path('search/', search_view, name='search'),
     path('sitemap/', SiteMapView.as_view(), name='sitemap'),
     path('newsletter/', news_letter_subscription, name='newsletter'),
+
 ]

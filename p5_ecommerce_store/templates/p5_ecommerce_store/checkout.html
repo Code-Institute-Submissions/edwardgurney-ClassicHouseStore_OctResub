@@ -29,6 +29,7 @@
               <strong>£{{object.total}}</strong>
             </li>
           </ul>
+          {% if shipping_addresses.count > 0 %}
           <h2 class="select">Select Address</h2>
           <form method="post">{% csrf_token %}
             <input type="hidden" name="user_address_selection">
@@ -46,7 +47,7 @@
           {% endfor %}
           <button class="w-100 btn btn-primary btn-lg btn-secondary bg-dark" type="submit">Make Payment</button>
           </form>
-  
+          {% endif %}
         </div>
         <div class="col-md-7 col-lg-8">
           <h4 class="mb-3">Shipping Address</h4>
