@@ -48,7 +48,7 @@ The site is for anyone that loves house music, but more specifically for those t
 
 User experience has been hightened with the ability to click and listen to a slice of the track/record. This was a particular deign feature I wanted to implement from the start. 
 
-When landing on the site, the user will be greeted with records so that they can start viewing and listening straight away, and can add to cart on the homepage or viewing the product details. They can purchase as a registered user or visitor and stripe payment functionality has been implemented.
+When landing on the site, the user will be greeted with records so that they can start viewing and listening straight away, and can add to cart on the homepage or viewing the product details. They can purchase as a registered user or visitor (they will be redirected to create an account, but can add to bag as a visitor) and stripe payment functionality has been implemented.
 
 CRUD functionality is employed using a database to store relevant data and various models have been created. 
 
@@ -92,18 +92,18 @@ As part of the project and to maximise reach to the store owners audience, socia
 - I want to be able to browse through the store easily, where I can just listen to music for when I'm not looking for anything in particular. 
 - I want to be able to register on the site and be able to log in.
 - I want to see the prices of records so that I know how much I am spending.
-- If I sign up as a first time user I want to receive a confirmation e-mail so that I know everytning has completed properly. 
+- If I sign up as a first time user I want to receive a confirmation e-mail so that I know everything has completed properly. 
 
 ### *Returning User Goals*
-- I want records to be easily finadable, so that I can listen to the music again, or find them if I am returning to the site to purchaase.
+- I want records to be easily findable, so that I can listen to the music again, or find them if I am returning to the site to purchaase.
 - I want my basket/bag to keep what I have added to basket, so that if I don't purchase the first time, I can return to the site later and purchase. 
-- As a registered user when logged in, I want to be able to rate records so that I can shre my views with other site users. 
+- As a registered user when logged in, I want to be able to rate records so that I can share my views with other site users. 
 
 ### *Purchasing User Goals*
 - When purchasing records, I would like to be able to increase or decrease the amount in my basket.
 - I want to be able to save my address details so that I don't have to type them in every time I visit the site and purchase something. 
 - I want to be able to enter my card details quickly and easily.
-- I want to receive and order confirmation e-mail. 
+- I want to receive an order confirmation e-mail. 
 
 ### *User Stories*
 Below is an image of the original user stories that was performed at project initiation, these were what needed to be implemented for the project to be a success. In total there are 20 user stories. The second image below is the Agile tool used in Github during development, this was used to map the user stories to the project goals. During development there was an additional user story implemented, taking the toal to 21.
@@ -154,7 +154,6 @@ During the project planning stage, some wireframes were constructed for the home
 
 <img src="media/images/phone_wireframe.png">
 <br>
-<br>
 
 ### *Images*
 
@@ -204,7 +203,7 @@ The navbar also provides 'login', 'logout' and 'signup' tabs. Depending on the s
 <br>
 
 ### **Login Page**
-Standard login page from Bootstrap with some slight styling changes to fit with the overall site. There are redirects here to the. homepage and sign-up for user experience if they find themselves on this page in error. 
+Standard login page from Bootstrap with some slight styling changes to fit with the overall site. There are redirects here to the homepage and sign-up for user experience if they find themselves on this page in error. 
 <img src="media/images/login.png">
 <br>
 
@@ -386,7 +385,7 @@ This is similar to the previous user story, that the user can view their saved a
 
 * As a site user I can receive an e-mail confirmation once registered so that I can refer to it in the future
 <img src="media/images/signup_email.png">
-The above is the baasic e-mail response received once the user signs up, they receive an e-mail confirming that it has happened and that it has been a success. This shows that the functionality is complete for this user story, and the e-mail will be beefed out by the store owner. 
+The above is the basic e-mail response received once the user signs up, they receive an e-mail confirming that it has happened and that it has been a success. This shows that the functionality is complete for this user story, and the e-mail will be beefed out by the store owner. 
 
 ### **User Story 8**
 * As a site user I can select if I think the record is 'banging' so that I can see how popular it is.
@@ -541,7 +540,6 @@ I am happy with these scores, compared to my first test, and making some changes
  * Postgres - Database management system used. 
  * Bootstrap
  * Font Awesome - Used for the listen graphic on the page.
- * Summernote - Was used for the admin panel.
  * Whitenoise - I installed this to try and solve an error in the console as part of a debugging process. The error was a collect static error, and heroku advised that whitenoise may be the solution. It wasn't the solution, but this is why whitenoise is installed - and not used. 
 
 ### **Technology and Validation**
@@ -788,7 +786,7 @@ The app was deployed on Heroku in the following steps (remote deployment):
 
 ### Heroku Security Issue During Development
 
-It is worth noting that when this project was started, the intial deployment was done following the above process, where automatic deployments happened whenever I pushed through Github. During this project, Heroku had a major security breach. Not only did this casue me a lot of pain for the first few days, automatic deplys were disabled and all pushes had to be done via the terminal in gitpod, by logging into my Heroku account (this was after a call to student support). This meant that for the rest of the project I had to deploy seperately in the terminal every time I needed to push to Heroku. Therefore, if at the time you are reading this, you may need to do the same and perfrom a git deply to Heroku. Please see below some additional steps that you will need to perform.
+It is worth noting that when this project was started, the intial deployment was done following the above process, where automatic deployments happened whenever I pushed through Github. During this project, Heroku had a major security breach. Not only did this cause me a lot of pain for the first few days, automatic deploys were disabled and all pushes had to be done via the terminal in gitpod, by logging into my Heroku account (this was after a call to student support). This meant that for the rest of the project I had to deploy seperately in the terminal every time I needed to push to Heroku. Therefore, if at the time you are reading this, you may need to do the same and perform a git deploy to Heroku. Please see below some additional steps that you will need to perform.
 
  * Login to Heroku by typing this command into the temrinal and entering your account details: 'heroku login -i'
  * Get your app name from Heroku: 'heroku apps'
