@@ -204,11 +204,13 @@ The navbar also provides 'login', 'logout' and 'signup' tabs. Depending on the s
 <br>
 
 ### **Login Page**
-
+Standard login page from Bootstrap with some slight styling changes to fit with the overall site. There are redirects here to the. homepage and sign-up for user experience if they find themselves on this page in error. 
+<img src="media/images/login.png">
 <br>
 
 ### **Sign Up Page**
-
+Users are directed here if they click the signup link on the navbar.
+<img src="media/images/signup.png">
 <br>
 
 ### **Search**
@@ -370,6 +372,10 @@ The above two images show a couple of the different times during the process tha
 
 The above image shows that registered users address details are saved for quicker checkout.
 
+The below image shows that the users can subcribe to an e-mail and once they have entered their e-mail address they receive a confirmation message. 
+
+<img src="media/images/succes_sub.png">
+
 ### **User Story 6**
 * As a site user I can log in and out so that I can view my account info such as open baskets from previous adds.
 <img src="media/images/open_order.png">
@@ -440,7 +446,7 @@ Implementing Stripe into the site allows users to enter payment information quic
 The confirmation email that users receive once completing their order should provide the comfort required that the order has been made to a reputable company. 
 
 ### **User Story 17**
-*As a shopper I can view and order confirmation so that I can be sure the order has been a success.
+*As a shopper I can view an order confirmation so that I can be sure the order has been a success.
 <img src="media/images/thanks_conf.png">
 Once the order is placed, the user is sent to an order confirmation page.
 
@@ -652,6 +658,8 @@ The [WC3](https://validator.w3.org/nu/) validator was used to check for any erro
 
 #### **CSS Validation**
 
+All CSS checks are clear in the deployed site to heroku (production), these can be seen in the images below (please click the dropdown). There is one error in the console in development still, and this is linked to bootstrap becasue I have no file called 'conten-script.js'. Therefore this has been left. 
+
 <details><summary>style.css</summary>
 
 <img src="media/images/style_css.png">
@@ -730,18 +738,69 @@ Despite the above, the product_id was not showing up in the admin panel, even af
 * E-mails weren't being received for the sign up process, this was because the template was not being rendered and I found the solution on stack overflow to use .render() to render the template:
 https://stackoverflow.com/questions/18055029/python-django-emailmultialternatives-template-object-has-no-attribute-encod
 
-* One last bug that I found before final deployment was linked to a previous bug, but when a new user registered and had not filled out the address form, they were able to click make payment. This gave a server error. I fixed this by hiding the form when there is no address to select using an if statement.
-
-### Bug/Issue
-
-### Unfixed Bugs and issues
+* One last bug that I found before final deployment and final checks was linked to a previous bug above (where the solution was to make the address on the form a required field), but when a new user registered and had not filled out the address form, they were able to click make payment (becasue this evaded the required field condition). This gave a server error. I fixed this by hiding the form when there is no address to select using an if statement.
 
 ## **Deployment**
+
+## Set Up
+
+I deployed this project to Heroku early to avoid any last-minute panic towards the end of the project, this is something I learned during the course content from CI. 
+
+I utilised the Code Institute Full Template as advised as a starting point for this project and followed the deployment guide. My requirements.txt file has the full list of dependencies that need installing. These are also mentioned in this readme file and you will need these to get started. 
+
+To start a new project create one by typing “django-admin startproject <project name>” (my project name is classic_house_vinyl_store). 
+
+To create the app within the project (p5_e-commerc_store) type “python3 manage.py startapp <app title>”. Repeat this for any additional apps and once done so add the app to your settings.py file to installed apps. 
+
+When setting up your models or making changes to them these need to be migrated each and every time. To prevent any mistakes from being applied I would recommend that you use python3 manage.py makemigrations --dry-run. This will then do a test run to make sure no errors have crept in to your code. Once you are happy then you can issue the same command omitting the –dry -run of the end. 
+
+To push the models to the database use the command “python3 manage.py migrate”, if you would like to test this, you can use the –plan flag before doing so. 
+
+To check that Django has been installed correctly enter “pyton3 manage.py runserver” and this should then show the rocket ship screen and success message. 
+
+## Deployment - Steps
+
+The app was deployed on Heroku in the following steps (remote deployment):
+
+* Created a Heroku account (or log in if existing user).
+
+* In the upper right hand corner clicked "New" and then selected "Create New App".
+
+* Chose a name for the app and region and clicked "Create App".
+
+* Click on settings tab and then select "Reveal config vars".
+
+* Add required config variables including postgres database url and other environment variables such as secret keys. Please note, you will need to copy the populated "DATABASE_URL" variable value so that your project can connect to the Heroku database.
+
+* On the settings tab, ensure heroku/python build pack is selected.
+
+* Pick Github as the deployment method on the "deploy" tab.
+
+* Search for repository.
+
+* Enable automatic deploys and then deploy branch.
+
+* Once processing has finished click on "View"
+
+ * In your development environment copy the content of env.py.example into your env.py file and update variable values with your information. You will need to create your own env.py file (The env.py file is git ignored so that secret information is kept secure).
+ * For example, the "DATABASE_URL" variable needs to have the Heroku value copied as the value here. The variable can then be used in the settings.py file to connect the database. You should also add in your own secret key values and then use the variable names (e.g. STRIPE_SECRET_KEY) in your settings.py file. Your Stripe Secret Key is obtained from creating an account in [Stripe](https://stripe.com/gb) and accessing your keys in your dashboard.
+ * Please note the secret key information will also need to be added into your config vars section in your Heroku settings tab.  
+
+### Heroku Security Issue During Development
+
+It is worth noting that when this project was started, the intial deployment was done following the above process, where automatic deployments happened whenever I pushed through Github. During this project, Heroku had a major security breach. Not only did this casue me a lot of pain for the first few days, automatic deplys were disabled and all pushes had to be done via the terminal in gitpod, by logging into my Heroku account (this was after a call to student support). This meant that for the rest of the project I had to deploy seperately in the terminal every time I needed to push to Heroku. Therefore, if at the time you are reading this, you may need to do the same and perfrom a git deply to Heroku. Please see below some additional steps that you will need to perform.
+
+ * Login to Heroku by typing this command into the temrinal and entering your account details: 'heroku login -i'
+ * Get your app name from Heroku: 'heroku apps'
+ * Commit to github in the normal way (git add . and git commit)
+ * Then push to Heroku with the command: 'git push heroku main:main'
+
 ### Forking the repository 
 To create a fork:
  * Log in to Github and click on the [Classic House Store Repo](https://github.com/edwardgurney/ClassicHouseStore).
  * Click on the 'Fork" button located in the top right of the screen.
  * This should now provide you with a fork in your Github account. 
+
 
 ### Cloning the Repository 
 To create a clone:
@@ -753,9 +812,6 @@ To create a clone:
 
 You will need to install all of the dependencies from the requirements.txt file into your workspace for it to work. 
 
-#### Local Deployment
-
-* Copy the content of env.py.example into your env.py file and update with your information. (The env.py file is git ignored so secret info is not pushed in your commit).
 
 ### Database
 1. Add DATABASE_URL to settings.py:
@@ -764,7 +820,8 @@ You will need to install all of the dependencies from the requirements.txt file 
 2. Migrate database (after perfroming --dry-run)
 3. Create superuser to navigate database
 
- 
+<br> 
+
 ## **Credits**
 
 I viewed a number of sites and video tutorials. I have listed these below.

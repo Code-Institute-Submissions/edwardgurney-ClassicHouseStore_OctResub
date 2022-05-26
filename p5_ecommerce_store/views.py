@@ -309,7 +309,7 @@ def news_letter_subscription(request):
     if form.is_valid():
         form.save()
         messages.add_message(
-            request, messages.SUCCESS, 'You successfully subscribed, thanks')
+            request, messages.SUCCESS, 'You successfully subscribed. Thanks')
     else:
         messages.add_message(
             request, messages.WARNING, 'Sorry, an error occured')
