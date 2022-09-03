@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://classic-house-store.herokuapp.com/</loc>
+  <lastmod>2022-07-07T18:42:28+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://classic-house-store.herokuapp.com/basket/</loc>
+  <lastmod>2022-07-07T18:42:28+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://classic-house-store.herokuapp.com/category/1</loc>
+  <lastmod>2022-07-07T18:42:28+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://classic-house-store.herokuapp.com/category/2</loc>
+  <lastmod>2022-07-07T18:42:28+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://classic-house-store.herokuapp.com/category/3</loc>
+  <lastmod>2022-07-07T18:42:28+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://classic-house-store.herokuapp.com/category/4</loc>
+  <lastmod>2022-07-07T18:42:28+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://classic-house-store.herokuapp.com/login/</loc>
+  <lastmod>2022-07-07T18:42:28+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://classic-house-store.herokuapp.com/signup/</loc>
+  <lastmod>2022-07-07T18:42:28+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://classic-house-store.herokuapp.com/product_detail/5</loc>
+  <lastmod>2022-07-07T18:42:28+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://classic-house-store.herokuapp.com/product_detail/11</loc>
+  <lastmod>2022-07-07T18:42:28+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://classic-house-store.herokuapp.com/product_detail/7</loc>
+  <lastmod>2022-07-07T18:42:28+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://classic-house-store.herokuapp.com/product_detail/8</loc>
+  <lastmod>2022-07-07T18:42:28+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://classic-house-store.herokuapp.com/product_detail/9</loc>
+  <lastmod>2022-07-07T18:42:28+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://classic-house-store.herokuapp.com/product_detail/10</loc>
+  <lastmod>2022-07-07T18:42:28+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://classic-house-store.herokuapp.com/product_detail/6</loc>
+  <lastmod>2022-07-07T18:42:28+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://classic-house-store.herokuapp.com/product_detail/12</loc>
+  <lastmod>2022-07-07T18:42:28+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://classic-house-store.herokuapp.com/sitemap/</loc>
+  <lastmod>2022-07-07T18:42:28+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+
+
+</urlset>

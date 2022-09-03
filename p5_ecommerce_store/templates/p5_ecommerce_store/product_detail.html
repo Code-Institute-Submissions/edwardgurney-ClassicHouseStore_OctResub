@@ -15,7 +15,7 @@
       <p><strong>Genre:</strong> {{ product.category }}</p>
       <p class="col-md-8 fs-4">{{ product.description|safe }}</p>
       {% if product.preview_audio_link %}
-        <a class="btn btn-sm btn-secondary bg-dark" href="{{product.preview_audio_link}}" target="_blank">
+        <a class="btn btn-sm btn-secondary bg-dark" href="{{product.preview_audio_link}}" target="_blank" rel="nofollow">
           Listen
         </a>
       {% endif %}

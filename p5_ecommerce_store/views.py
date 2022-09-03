@@ -140,8 +140,14 @@ def send_user_email(subject, message, recipient):
     except Exception:
         pass
 
+def login_redirect_view(request):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect("/")
+    return HttpResponseRedirect("/auth_login")
 
 def signup_view(request):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect("/")
     unsubmitted_form = SignupForm()
     if request.method == 'POST':
         form = SignupForm(request.POST)
